@@ -4,14 +4,15 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../media_query.dart';
 
-
 class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({Key? key}) : super(key: key);
-
+  const LoadingWidget({Key? key, required this.size, required this.color})
+      : super(key: key);
+  final double size;
+  final Color color;
   @override
   Widget build(BuildContext context) {
     final spinKit =
-        SpinKitThreeBounce(color: primaryColor, size: getWidth(context, 0.055));
+        SpinKitThreeBounce(color: color, size: getWidth(context, size));
     return Center(child: spinKit);
   }
 }

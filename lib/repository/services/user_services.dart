@@ -1,5 +1,6 @@
-import 'dart:io';
 import 'package:alotazrighat_application/constants/constans_variable.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
@@ -17,12 +18,14 @@ class UserService {
 
   Future<bool> getStateNetwork() async {
     try {
-      final result = await InternetAddress.lookup('https://alotazrighat.com/');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+      final Connectivity connectivity = Connectivity();
+      var result = await connectivity.checkConnectivity();
+      if (result == ConnectivityResult.mobile ||
+          result == ConnectivityResult.wifi) {
         return true;
       }
       return false;
-    } on SocketException catch (_) {
+    } on PlatformException catch (_) {
       return false;
     }
   }

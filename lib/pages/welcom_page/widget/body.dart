@@ -1,4 +1,6 @@
 import 'package:alotazrighat_application/pages/welcom_page/logic/bloc/welcom_bloc.dart';
+import 'package:alotazrighat_application/pages/welcom_page/widget/load_widget.dart';
+import 'package:alotazrighat_application/widget/popup/awesome_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,22 +20,22 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WelcomBloc, WelcomState>(
-      builder: (context, state) {
-        if (state.welcomEvent is InitialWelcomEvent) {
-          return Container(
-            color: Colors.red,
+    return BlocListener<WelcomBloc, WelcomState>(
+      listener: (context, state) {
+        if (state.welcomEvent is FeaildConectionWelcomEvent) {
+          alertDialogWarning(
+            context,
+            "مشکل",
+            "خطا در اتصال به اینترنت",
+            () {
+              context.read<WelcomBloc>().add(InitialWelcomEvent());
+            },
           );
+        } else if (state.welcomEvent is CompletedWelcomEvent) {
+          print("object");
         }
-        if (state.welcomEvent is TestConectionWelcomEvent) {
-          return Container(color: Colors.amber);
-        }
-        if (state.welcomEvent is CompletedWelcomEvent) {}
-
-        return Container(
-          color: Colors.black,
-        );
       },
+      child: const LoadWidget(),
     );
   }
 }

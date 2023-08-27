@@ -10,17 +10,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
-  runApp(MultiBlocProvider(
-    providers: [
-      RepositoryProvider(
-        create: (context) => UserRepository(userService: UserService()),
-        child: BlocProvider(
-          create: (context) =>
-              WelcomBloc(userRepository: context.read<UserRepository>()),
-        ),
-      )
-    ],
-    child: CustomerApp(appRouter: AppRouter()),
+  runApp(RepositoryProvider(
+    create: (context) => UserRepository(userService: UserService()),
+    child: BlocProvider(
+      create: (context) =>
+          WelcomBloc(userRepository: context.read<UserRepository>()),
+      child: CustomerApp(appRouter: AppRouter()),
+    ),
   ));
 }
 
@@ -33,7 +29,7 @@ class CustomerApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
-        title: "Nurseino",
+        title: "A;otazrighat",
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
