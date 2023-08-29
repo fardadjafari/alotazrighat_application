@@ -50,6 +50,13 @@ flutter:
 
   assets:
    - assets/icons/
+  
+
+  fonts:
+    - family: Iran Sans
+      fonts:
+        - asset: assets/fonts/IRANSansXFaNum-Bold.ttf
+        - asset: assets/fonts/IRANSansXFaNum-Regular.ttf
 
   
   
