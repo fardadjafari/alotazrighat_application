@@ -14,7 +14,8 @@ void main() async {
     create: (context) => UserRepository(userService: UserService()),
     child: BlocProvider(
       create: (context) =>
-          WelcomBloc(userRepository: context.read<UserRepository>()),
+          WelcomBloc(userRepository: context.read<UserRepository>())
+            ..add(InitialWelcomEvent()),
       child: CustomerApp(appRouter: AppRouter()),
     ),
   ));
@@ -43,7 +44,6 @@ class CustomerApp extends StatelessWidget {
         home: const Directionality(
             textDirection: TextDirection.rtl, child: WelcomPage()),
         onGenerateRoute: appRouter.onGenerateRout,
-        initialRoute: WelcomPage.screenId,
       ),
     );
   }

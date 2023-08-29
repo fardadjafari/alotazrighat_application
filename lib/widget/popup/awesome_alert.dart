@@ -2,8 +2,8 @@ import 'package:alotazrighat_application/widget/color_utility.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
-alertDialogWarning(
-    BuildContext context, String title, String desc, Function()? btnPress) {
+alertDialogWarning(BuildContext context, String title, String desc,
+    String titlebtnOk, Function()? btnPress) {
   return AwesomeDialog(
     dialogBackgroundColor: backGroundColor,
     context: context,
@@ -14,7 +14,8 @@ alertDialogWarning(
     desc: desc,
     btnOkOnPress: btnPress,
     btnOkColor: Colors.amber[600],
-    btnOkText: 'برگشت',
+    btnOkText: titlebtnOk,
+    autoDismiss: true,
     // buttonsTextStyle: getBodyBoldWhiteStyle(context),
   ).show();
 }
