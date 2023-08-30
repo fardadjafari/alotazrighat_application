@@ -32,6 +32,14 @@ alertDialogError(
     animType: AnimType.scale,
     headerAnimationLoop: false,
     title: title,
+    titleTextStyle: const TextStyle(
+        decoration: TextDecoration.none,
+        fontFamily: "Iran Sans",
+        fontWeight: FontWeight.bold),
+    descTextStyle: const TextStyle(
+        decoration: TextDecoration.none,
+        fontFamily: "Iran Sans",
+        fontWeight: FontWeight.bold),
     desc: desc,
     btnOkOnPress: () {},
     btnOkColor: primaryColor,

@@ -26,7 +26,7 @@ class ButtonText extends StatelessWidget {
         text,
         style: TextStyle(
             decoration: TextDecoration.none,
-            fontSize: (fontSizeText / 720) * MediaQuery.of(context).size.height,
+            fontSize: fontSizeText,
             color: colorText,
             fontWeight: fontWeightText),
       ),

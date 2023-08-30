@@ -32,13 +32,13 @@ class PageSlider {
                                   builder: (context) => const HomePage()))
                             },
                         colorText: Colors.grey,
-                        fontSizeText: getWidth(context, 0.04),
+                        fontSizeText: getWidth(context, 0.03),
                         fontWeightText: FontWeight.bold,
                         fontChange: true),
                     TextLable(
                       text: "راحت تزریق کن",
                       colorText: Colors.redAccent,
-                      fontSizeText: getWidth(context, 0.06),
+                      fontSizeText: getWidth(context, 0.05),
                       fontWeightText: FontWeight.bold,
                       textAlign: TextAlign.center,
                     )
@@ -115,13 +115,13 @@ class PageSlider {
                                   builder: (context) => const HomePage()))
                             },
                         colorText: Colors.grey,
-                        fontSizeText: 18,
+                        fontSizeText: getWidth(context, 0.03),
                         fontWeightText: FontWeight.bold,
                         fontChange: true),
-                    const TextLable(
+                    TextLable(
                       text: "نیروی متخصص",
                       colorText: Colors.lightGreen,
-                      fontSizeText: 19,
+                      fontSizeText: getWidth(context, 0.05),
                       fontWeightText: FontWeight.bold,
                       textAlign: TextAlign.center,
                     )
@@ -132,10 +132,10 @@ class PageSlider {
                 ),
                 SvgPicture.asset(
                   "assets/icons/slider2.svg",
-                  height: getWidth(context, 0.6),
+                  height: getWidth(context, 0.5),
                 ),
                 SizedBox(
-                  height: getWidth(context, 0.2),
+                  height: getWidth(context, 0.1),
                 ),
                 Align(
                   alignment: Alignment.center,
@@ -198,7 +198,7 @@ class PageSlider {
                                   builder: (context) => const HomePage()))
                             },
                         colorText: Colors.grey,
-                        fontSizeText: 18,
+                        fontSizeText: getWidth(context, 0.03),
                         fontWeightText: FontWeight.bold,
                         fontChange: true),
                     TextLable(
@@ -242,28 +242,27 @@ class PageSlider {
                       SizedBox(
                         height: getWidth(context, 0.1),
                       ),
-                      TextLable(
-                        text: "با الو تزریقات \n"
-                            "به صورت اینترنتی درخواست "
-                            " ثبت کن و خدمات دریافت کن  \n"
-                            "البته در منزل ! ! !",
-                        colorText: Colors.black54,
-                        fontSizeText: getWidth(context, 0.05),
-                        fontWeightText: FontWeight.w200,
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(
-                        height: getWidth(context, 0.1),
-                      ),
                       SquereButton(
                         color: Colors.green,
                         press: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => const HomePage()));
                         },
-                        text: "ثبت درخواست",
+                        text: "ثبت نام",
                         textColor: Colors.white70,
-                      )
+                      ),
+                      SizedBox(
+                        height: getWidth(context, 0.01),
+                      ),
+                      SquereButton(
+                        color: Colors.blue,
+                        press: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const HomePage()));
+                        },
+                        text: "قبلا ثبت نام کردم",
+                        textColor: Colors.white70,
+                      ),
                     ],
                   ),
                 ),
@@ -277,5 +276,3 @@ class PageSlider {
     return page;
   }
 }
-
-final page = [];
