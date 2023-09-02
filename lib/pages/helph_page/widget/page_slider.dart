@@ -1,4 +1,5 @@
-import 'package:alotazrighat_application/pages/home_page/home_page.dart';
+import 'package:alotazrighat_application/pages/login_page/login_page.dart';
+import 'package:alotazrighat_application/pages/register_page/register_page.dart';
 import 'package:alotazrighat_application/widget/button/squre_button.dart';
 import 'package:alotazrighat_application/widget/button/text_button.dart';
 import 'package:alotazrighat_application/widget/lable/text_lable.dart';
@@ -29,12 +30,11 @@ class PageSlider {
                         text: "بستن توضیحات",
                         bodyFunction: () => {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const HomePage()))
+                                  builder: (context) => const LoginPage()))
                             },
                         colorText: Colors.grey,
                         fontSizeText: getWidth(context, 0.03),
-                        fontWeightText: FontWeight.bold,
-                        fontChange: true),
+                        fontWeightText: FontWeight.bold),
                     TextLable(
                       text: "راحت تزریق کن",
                       colorText: Colors.redAccent,
@@ -112,12 +112,11 @@ class PageSlider {
                         text: "بستن توضیحات",
                         bodyFunction: () => {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const HomePage()))
+                                  builder: (context) => const LoginPage()))
                             },
                         colorText: Colors.grey,
                         fontSizeText: getWidth(context, 0.03),
-                        fontWeightText: FontWeight.bold,
-                        fontChange: true),
+                        fontWeightText: FontWeight.bold),
                     TextLable(
                       text: "نیروی متخصص",
                       colorText: Colors.lightGreen,
@@ -195,12 +194,11 @@ class PageSlider {
                         text: "بستن توضیحات",
                         bodyFunction: () => {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const HomePage()))
+                                  builder: (context) => const LoginPage()))
                             },
                         colorText: Colors.grey,
                         fontSizeText: getWidth(context, 0.03),
-                        fontWeightText: FontWeight.bold,
-                        fontChange: true),
+                        fontWeightText: FontWeight.bold),
                     TextLable(
                       text: "درخواست اینترنتی",
                       colorText: Colors.blue,
@@ -246,7 +244,7 @@ class PageSlider {
                         color: Colors.green,
                         press: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const HomePage()));
+                              builder: (context) => const RegisterPage()));
                         },
                         text: "ثبت نام",
                         textColor: Colors.white70,
@@ -258,7 +256,7 @@ class PageSlider {
                         color: Colors.blue,
                         press: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const HomePage()));
+                              builder: (context) => const LoginPage()));
                         },
                         text: "قبلا ثبت نام کردم",
                         textColor: Colors.white70,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ButtonText extends StatelessWidget {
-  final bool fontChange;
   final Function() bodyFunction;
   final String text;
   final Color colorText;
@@ -10,7 +9,6 @@ class ButtonText extends StatelessWidget {
 
   const ButtonText(
       {Key? key,
-      this.fontChange = true,
       required this.bodyFunction,
       required this.text,
       required this.colorText,

@@ -10,6 +10,8 @@ class ColorUtility {
 final primaryColor = Colors.purple.shade200;
 const backGroundColor = Colors.white;
 const textFieldColor = Color(0xFFF1F2F4);
+const buttonColor = Color(0xFF2F6D6A);
+const buttonTextColor = Color(0xFFF1F2F4);
 
 const darkColor = Color(0xff3D3F47);
 const redColor = Color(0xffea504c);
