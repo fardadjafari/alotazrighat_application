@@ -1,22 +1,51 @@
 import 'dart:async';
 
+import 'package:alotazrighat_application/repository/user_repository.dart';
+import 'package:alotazrighat_application/tools/network/http_status.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
 
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc() : super(LoginState(loginEvent: InitialPage())) {
-    on<LoginEvent>((event, emit) {
-      on<LoginEvent>(_login);
-    });
+class LoginBloc extends Bloc<LoginUserEvent, LoginUserState> {
+  LoginBloc({required this.userRepository})
+      : super(LoginUserState(loginUserEvent: InitialPageEvent())) {
+    on<FillPhoneNumberEvent>(_sendCode);
+    on<FillPasswordEvent>(_ckeckDataLogin);
+  }
+  final UserRepository userRepository;
+
+  FutureOr<void> _sendCode(
+      FillPhoneNumberEvent event, Emitter<LoginUserState> emit) async {
+    emit(state.copyWith(LoadingPageEvent()));
+
+    emit(state.copyWith(InitialPheneNumberPageEvent()));
+
+    emit(state.copyWith(LoadingPageEvent()));
+
+    var result = await userRepository.sendSMSCode(event.phonenumber);
+
+    if (result.statusHttps == StatusHttps.ok) {
+      emit(state.copyWith(InitialPasswordPageEvent()));
+    } else {
+      emit(state.copyWith(ErrorPhoneNumberEvent()));
+      emit(state.copyWith(InitialPageEvent()));
+    }
   }
 
-  FutureOr<void> _login(LoginEvent event, Emitter<LoginState> emit) {
-    emit(state.copyWith(LoadingPage()));
+  FutureOr<void> _ckeckDataLogin(
+      FillPasswordEvent event, Emitter<LoginUserState> emit) async {
+    emit(state.copyWith(LoadingPageEvent()));
 
-    if (condition) {
-      
+    var result =
+        await userRepository.loginUser(event.phonenumber, event.password);
+
+    if (result.statusHttps == StatusHttps.ok) {
+      emit(state.copyWith(CompletedLoginEvent()));
+    } else {
+      emit(state.copyWith(ErrorPasswordEvent()));
+      emit(state.copyWith(InitialPasswordPageEvent()));
     }
   }
 }

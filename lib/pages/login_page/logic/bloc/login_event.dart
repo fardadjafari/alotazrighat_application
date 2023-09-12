@@ -1,26 +1,31 @@
 part of 'login_bloc.dart';
 
-class LoginEvent {}
+@immutable
+abstract class LoginUserEvent {}
 
-class InitialPage extends LoginEvent {}
+class InitialPageEvent extends LoginUserEvent {}
 
-class LoadingPage extends LoginEvent {}
+class InitialPheneNumberPageEvent extends LoginUserEvent {}
 
-class EnterPhoneNumber extends LoginEvent {}
+class InitialPasswordPageEvent extends LoginUserEvent {}
 
-class ErrorPhoneNumber extends LoginEvent {}
+class LoadingPageEvent extends LoginUserEvent {}
 
-class EnterPassword extends LoginEvent {
+class FillPhoneNumberEvent extends LoginUserEvent {
   final String phonenumber;
 
-  EnterPassword({required this.phonenumber});
+  FillPhoneNumberEvent({required this.phonenumber});
 }
 
-class ErrorPassword extends LoginEvent {}
+class ErrorPhoneNumberEvent extends LoginUserEvent {}
 
-sealed class CompletedLogin extends LoginEvent {
+class FillPasswordEvent extends LoginUserEvent {
   final String phonenumber;
   final String password;
 
-  CompletedLogin({required this.phonenumber, required this.password});
+  FillPasswordEvent({required this.phonenumber, required this.password});
 }
+
+class ErrorPasswordEvent extends LoginUserEvent {}
+
+class CompletedLoginEvent extends LoginUserEvent {}

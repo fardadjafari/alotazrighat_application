@@ -1,5 +1,7 @@
+import 'package:alotazrighat_application/pages/login_page/logic/bloc/login_bloc.dart';
 import 'package:alotazrighat_application/pages/welcom_page/logic/bloc/welcom_bloc.dart';
 import 'package:alotazrighat_application/pages/welcom_page/welcom_page.dart';
+import 'package:alotazrighat_application/repository/models/setting/profile_table.dart';
 import 'package:alotazrighat_application/repository/services/user_services.dart';
 import 'package:alotazrighat_application/repository/user_repository.dart';
 import 'package:alotazrighat_application/themes/theme.dart';
@@ -8,14 +10,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final directory = await getApplicationDocumentsDirectory();
+  Hive.init(directory.path);
+  Hive.registerAdapter(ProfileModelAdapter());
   runApp(RepositoryProvider(
     create: (context) => UserRepository(userService: UserService()),
-    child: BlocProvider(
-      create: (context) =>
-          WelcomBloc(userRepository: context.read<UserRepository>())
-            ..add(InitialWelcomEvent()),
+    child: MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              WelcomBloc(userRepository: context.read<UserRepository>())
+                ..add(InitialWelcomEvent()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              LoginBloc(userRepository: context.read<UserRepository>()),
+        ),
+      ],
       child: CustomerApp(appRouter: AppRouter()),
     ),
   ));

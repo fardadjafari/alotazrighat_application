@@ -6,6 +6,8 @@ class PasswordInput extends StatelessWidget {
   final String hintText;
   final IconData icon;
   final Function(String?) onSaved;
+  final FocusNode? focusNode;
+  final TextEditingController controller;
   //final String? Function(String?) validation;
   final String? error;
 
@@ -14,8 +16,11 @@ class PasswordInput extends StatelessWidget {
       required this.icon,
       required this.hintText,
       required this.onSaved,
+
       // required this.validation,
-      this.error})
+      this.error,
+      this.focusNode,
+      required this.controller})
       : super(key: key);
 
   @override
@@ -24,6 +29,7 @@ class PasswordInput extends StatelessWidget {
       alignment: Alignment.center,
       width: getWidth(context, 0.9),
       child: TextFormField(
+        focusNode: focusNode,
         textAlign: TextAlign.center,
         maxLength: 5,
         style: TextStyle(
@@ -51,7 +57,8 @@ class PasswordInput extends StatelessWidget {
         ),
         validator: Uservalidator.pssswordValidator,
         onChanged: onSaved,
-        autofocus: true,
+        autofocus: false,
+        controller: controller,
         keyboardType: TextInputType.phone,
       ),
     );

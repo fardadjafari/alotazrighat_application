@@ -1,7 +1,6 @@
 import 'package:alotazrighat_application/styles/shapes.dart';
+import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:flutter/material.dart';
-
-
 
 getSnackBarWidget(BuildContext context, String text, Color color) {
   ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -10,9 +9,16 @@ getSnackBarWidget(BuildContext context, String text, Color color) {
       backgroundColor: color,
       shape: getShapeWidget(10),
       behavior: SnackBarBehavior.floating,
-      content: Text(text),
+      content: Text(
+        text,
+        style: TextStyle(
+            decoration: TextDecoration.none,
+            fontFamily: "Iran Sans",
+            fontSize: getWidth(context, 0.04),
+            fontWeight: FontWeight.bold),
+      ),
       dismissDirection: DismissDirection.horizontal,
-      duration: const Duration(milliseconds: 2000),
+      duration: const Duration(seconds: 4),
     ),
   );
 }

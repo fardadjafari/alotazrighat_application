@@ -7,16 +7,18 @@ class PhoneNumberInput extends StatelessWidget {
   final String hintText;
   final IconData icon;
   final Function(String?) onSaved;
-  //final String? Function(String?) validation;
   final String? error;
+  final TextEditingController controller;
+  final FocusNode? focusNode;
 
   const PhoneNumberInput(
       {Key? key,
       required this.icon,
       required this.hintText,
       required this.onSaved,
-      // required this.validation,
-      this.error})
+      required this.controller,
+      this.error,
+      this.focusNode})
       : super(key: key);
 
   @override
@@ -26,6 +28,8 @@ class PhoneNumberInput extends StatelessWidget {
       width: getWidth(context, 0.9),
       child: TextFormField(
         maxLength: 11,
+        controller: controller,
+        focusNode: focusNode,
         maxLengthEnforcement: MaxLengthEnforcement.none,
         textAlign: TextAlign.center,
         style: TextStyle(
@@ -51,7 +55,7 @@ class PhoneNumberInput extends StatelessWidget {
         ),
         validator: Uservalidator.phoneNumberValidator,
         onChanged: onSaved,
-        autofocus: true,
+        autofocus: false,
         keyboardType: TextInputType.phone,
       ),
     );

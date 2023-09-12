@@ -1,11 +1,11 @@
 part of 'login_bloc.dart';
 
-class LoginState {
-  final LoginEvent loginEvent;
+class LoginUserState {
+  final LoginUserEvent loginUserEvent;
 
-  const LoginState({required this.loginEvent});
+  LoginUserState({required this.loginUserEvent});
 
-  LoginState copyWith(LoginEvent? loginEvent) {
-    return LoginState(loginEvent: loginEvent ?? this.loginEvent);
+  LoginUserState copyWith(LoginUserEvent? loginUserEvent) {
+    return LoginUserState(loginUserEvent: loginUserEvent ?? this.loginUserEvent);
   }
 }

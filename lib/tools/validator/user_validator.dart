@@ -16,11 +16,11 @@ class Uservalidator {
           .build();
 
   static final phoneNumberValidator =
-      ValidationBuilder(requiredMessage: "شماره تلفن وارد شده معتبر نمی باشد")
-          .minLength(11, "شماره تلفن وارد شده معتبر نمی باشد")
-          .maxLength(12, "شماره تلفن وارد شده معتبر نمی باشد")
+      ValidationBuilder(requiredMessage: "شماره همراه وارد شده معتبر نمی باشد")
+          .minLength(11, "شماره همراه وارد شده معتبر نمی باشد")
+          .maxLength(11, "شماره همراه وارد شده معتبر نمی باشد")
           .regExp(RegExp("09([0]|[1]|[2]|[3]|[9])([0-3]|[5-9])([0-9]){7}"),
-              "شماره تلفن وارد شده معتبر نمی باشد")
+              "شماره همراه وارد شده معتبر نمی باشد")
           .build();
 
   static final pssswordValidator =
