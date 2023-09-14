@@ -2,14 +2,16 @@ import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:flutter/material.dart';
 
 class WaveWidget extends StatelessWidget {
-  const WaveWidget({super.key});
+  const WaveWidget({super.key, required this.heightWave});
+
+  final double heightWave;
 
   @override
   Widget build(BuildContext context) {
     return Transform.flip(
       flipY: true,
       child: CustomPaint(
-        size: Size(getAllWidth(context), getHeight(context, 70)),
+        size: Size(getAllWidth(context), getHeight(context, heightWave)),
         painter: Painter(),
       ),
     );

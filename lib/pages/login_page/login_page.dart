@@ -18,7 +18,7 @@ class LoginPage extends StatelessWidget {
           child: const Center(
             child: Align(
               alignment: Alignment.topCenter,
-              child: WaveWidget(),
+              child: WaveWidget(heightWave: 70),
             ),
           ),
         ),

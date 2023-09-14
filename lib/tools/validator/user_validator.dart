@@ -23,6 +23,14 @@ class Uservalidator {
               "شماره همراه وارد شده معتبر نمی باشد")
           .build();
 
+  static final tellphoneValidator = ValidationBuilder(
+          requiredMessage: " تلفن ثابت وارد شده معتبر نمی باشد")
+      .minLength(11, "تلفن ثابت وارد شده معتبر نمی باشد")
+      .maxLength(11, "تلفن ثابت وارد شده معتبر نمی باشد")
+      .regExp(
+          RegExp("^0[0-9]{2,}[0-9]{8}"), "تلفن ثابت وارد شده معتبر نمی باشد")
+      .build();
+
   static final pssswordValidator =
       ValidationBuilder(requiredMessage: "رمز وارد شده معتبر نمی باشد")
           .minLength(5, "رمز  وارد شده معتبر نمی باشد")

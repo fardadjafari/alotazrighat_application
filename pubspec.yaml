@@ -36,11 +36,15 @@ dependencies:
   dio: ^5.3.2
   json_serializable: ^6.7.1
   json_annotation: ^4.8.1
+  geolocator: ^10.0.1
+  
+
 
   
   
   cupertino_icons: ^1.0.2
   form_validator: ^2.1.1
+  flutter_map: ^5.0.0
 
 dev_dependencies:
   flutter_test:

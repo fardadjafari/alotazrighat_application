@@ -243,8 +243,7 @@ class PageSlider {
                       SquereButton(
                         color: Colors.green,
                         press: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const RegisterPage()));
+                          Navigator.pushNamed(context, RegisterPage.screenId);
                         },
                         text: "ثبت نام",
                         textColor: Colors.white70,
@@ -255,8 +254,7 @@ class PageSlider {
                       SquereButton(
                         color: Colors.blue,
                         press: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const LoginPage()));
+                          Navigator.pushNamed(context, LoginPage.screenId);
                         },
                         text: "قبلا ثبت نام کردم",
                         textColor: Colors.white70,

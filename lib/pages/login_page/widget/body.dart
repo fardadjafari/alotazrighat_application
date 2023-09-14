@@ -69,7 +69,6 @@ class _BodyState extends State<Body> {
         }
       },
       builder: (context, state) {
-        print(state.loginUserEvent);
         if (state.loginUserEvent is LoadingPageEvent) {
           return Padding(
             padding: EdgeInsets.only(top: getHeight(context, 0.5)),
