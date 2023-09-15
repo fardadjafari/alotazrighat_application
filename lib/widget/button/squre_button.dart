@@ -33,7 +33,7 @@ class SquereButton extends StatelessWidget {
               text,
               style: TextStyle(
                   fontFamily: "Iran Sans",
-                  fontSize: getWidth(context, 0.05),
+                  fontSize: getWidth(context, 0.03),
                   fontWeight: FontWeight.bold,
                   color: textColor),
             )),

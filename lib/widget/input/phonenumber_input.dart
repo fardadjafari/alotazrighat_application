@@ -1,4 +1,5 @@
 import 'package:alotazrighat_application/tools/validator/user_validator.dart';
+import 'package:alotazrighat_application/widget/color_utility.dart';
 import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,14 +38,15 @@ class PhoneNumberInput extends StatelessWidget {
         decoration: InputDecoration(
           //errorText: "شماره وارد شده صحیح نیست",
           errorStyle: TextStyle(
-              fontFamily: 'iran sans', fontSize: getWidth(context, 0.04)),
+              fontFamily: 'iran sans', fontSize: getWidth(context, 0.035)),
           counterText: "",
           labelText: hintText,
           labelStyle: TextStyle(fontSize: getWidth(context, 0.04)),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(100.0),
           ),
-          floatingLabelStyle: TextStyle(fontSize: getWidth(context, 0.05)),
+          floatingLabelStyle:
+              TextStyle(color: darkColor, fontSize: getWidth(context, 0.05)),
           fillColor: const Color(0xFFA1D3D1),
           prefixIcon: Icon(Icons.phone, size: getWidth(context, 0.06)),
           prefixIconColor: Colors.black45,

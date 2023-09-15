@@ -25,7 +25,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  int _remainingTime = 50;
+  int _remainingTime = 180;
   late Timer _timer;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<FormState> _formKeyPassword = GlobalKey<FormState>();
@@ -147,7 +147,7 @@ class _BodyState extends State<Body> {
                   TextLable(
                       text: '$_remainingTime ثانیه',
                       colorText: darkColor,
-                      fontSizeText: getWidth(context, 0.06),
+                      fontSizeText: getWidth(context, 0.05),
                       fontWeightText: FontWeight.w600,
                       textAlign: TextAlign.center),
                   SizedBox(

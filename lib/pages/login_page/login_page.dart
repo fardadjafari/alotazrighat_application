@@ -1,3 +1,4 @@
+import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:alotazrighat_application/widget/shapes/top_wave_shap.dart';
 import 'package:alotazrighat_application/widget/shapes/wave_shape.dart';
 import 'package:animate_do/animate_do.dart';
@@ -15,14 +16,13 @@ class LoginPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Stack(children: [
         FadeInDown(
-          child: const Center(
+          child: Center(
             child: Align(
               alignment: Alignment.topCenter,
-              child: WaveWidget(heightWave: 70),
+              child: WaveWidget(heightWave: getHeight(context, 0.01)),
             ),
           ),
         ),
-        const Body(),
         FadeInUp(
           child: const Center(
             child: Align(
@@ -30,7 +30,8 @@ class LoginPage extends StatelessWidget {
               child: BottomWaveWidget(),
             ),
           ),
-        )
+        ),
+        const Body(),
       ]),
     );
   }

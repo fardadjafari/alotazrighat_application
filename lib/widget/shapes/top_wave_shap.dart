@@ -7,7 +7,7 @@ class BottomWaveWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(getAllWidth(context), getHeight(context, 0.6)),
+      size: Size(getAllWidth(context), getHeight(context, 0.4)),
       painter: Painter(),
     );
   }

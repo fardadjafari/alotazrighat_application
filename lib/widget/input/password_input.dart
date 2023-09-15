@@ -1,4 +1,5 @@
 import 'package:alotazrighat_application/tools/validator/user_validator.dart';
+import 'package:alotazrighat_application/widget/color_utility.dart';
 import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +39,8 @@ class PasswordInput extends StatelessWidget {
         ),
         decoration: InputDecoration(
           //errorText: error,
+          errorStyle: TextStyle(
+              fontFamily: 'iran sans', fontSize: getWidth(context, 0.035)),
           counterText: "",
           labelText: hintText,
           labelStyle:
@@ -45,8 +48,10 @@ class PasswordInput extends StatelessWidget {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(100.0),
           ),
-          floatingLabelStyle:
-              TextStyle(fontSize: getWidth(context, 0.05), letterSpacing: 0),
+          floatingLabelStyle: TextStyle(
+              color: darkColor,
+              fontSize: getWidth(context, 0.05),
+              letterSpacing: 0),
           fillColor: const Color(0xFFA1D3D1),
           prefixIcon: Icon(Icons.lock, size: getWidth(context, 0.06)),
           prefixIconColor: Colors.black45,
