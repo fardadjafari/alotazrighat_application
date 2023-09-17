@@ -16,15 +16,15 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(children: [
-        const Body(),
         FadeInDown(
           child: Center(
             child: Align(
               alignment: Alignment.topCenter,
-              child: WaveWidget(heightWave: getHeight(context, 0.0001)),
+              child: WaveWidget(heightWave: getHeight(context, 0.0008)),
             ),
           ),
         ),
+        const Body(),
       ]),
     );
   }

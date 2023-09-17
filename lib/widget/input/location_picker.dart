@@ -3,12 +3,16 @@ import 'dart:math';
 import 'package:alotazrighat_application/widget/button/zoom_map_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 
 class LocationPicker extends StatefulWidget {
   static const String route = 'point_to_latlng';
 
-  const LocationPicker({Key? key}) : super(key: key);
+  double? lang;
+  double? laut;
+
+  LocationPicker(this.lang, this.laut, {Key? key}) : super(key: key);
 
   @override
   PointToLatlngPage createState() {
@@ -42,7 +46,7 @@ class PointToLatlngPage extends State<LocationPicker> {
             onMapEvent: (event) {
               updatePoint(null, context);
             },
-            center: const LatLng(35.715298, 51.404343),
+            center: LatLng(widget.laut ?? 5, widget.lang ?? 5),
             zoom: 11,
             minZoom: 3,
           ),

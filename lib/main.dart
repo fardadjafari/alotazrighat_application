@@ -1,4 +1,5 @@
 import 'package:alotazrighat_application/pages/login_page/logic/bloc/login_bloc.dart';
+import 'package:alotazrighat_application/pages/register_page/logic/bloc/register_bloc.dart';
 import 'package:alotazrighat_application/pages/welcom_page/logic/bloc/welcom_bloc.dart';
 import 'package:alotazrighat_application/pages/welcom_page/welcom_page.dart';
 import 'package:alotazrighat_application/repository/models/setting/profile_table.dart';
@@ -30,6 +31,11 @@ void main() async {
         BlocProvider(
           create: (context) =>
               LoginBloc(userRepository: context.read<UserRepository>()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              RegisterBloc(userRepository: context.read<UserRepository>())
+                ..add(InitialRegisterPageEvent()),
         ),
       ],
       child: CustomerApp(appRouter: AppRouter()),

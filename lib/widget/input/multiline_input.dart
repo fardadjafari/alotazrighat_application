@@ -38,7 +38,9 @@ class MultiLineTextInput extends StatelessWidget {
           maxLengthEnforcement: MaxLengthEnforcement.none,
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontFamily: 'iran sans', letterSpacing: getWidth(context, 0.001)),
+              fontSize: getWidth(context, 0.035),
+              fontFamily: 'iran sans',
+              letterSpacing: getWidth(context, 0.001)),
           decoration: InputDecoration(
             errorStyle: TextStyle(
                 fontFamily: 'iran sans', fontSize: getWidth(context, 0.04)),
