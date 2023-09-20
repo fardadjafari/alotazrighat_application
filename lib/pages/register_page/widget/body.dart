@@ -61,96 +61,105 @@ class _BodyState extends State<Body> {
         print(state.registerEvent.toString());
         if (state.registerEvent is InitialFormPageEvent) {
           return SingleChildScrollView(
-            child: Container(
-              alignment: Alignment.center,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: getHeight(context, 0.05)),
-                    child: TextLable(
-                      text: "ثبت نام ",
-                      colorText: Colors.white,
-                      fontSizeText: getHeight(context, 0.03),
-                      fontWeightText: FontWeight.w900,
-                      textAlign: TextAlign.center,
+            child: Form(
+              key: _formKey,
+              child: Container(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: getHeight(context, 0.05)),
+                      child: TextLable(
+                        text: "ثبت نام ",
+                        colorText: Colors.white,
+                        fontSizeText: getHeight(context, 0.03),
+                        fontWeightText: FontWeight.w900,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: getHeight(context, 0.14),
-                  ),
-                  PhoneNumberInput(
-                    hintText: "شماره همراه",
-                    icon: Icons.phone,
-                    controller: phoneNumberController,
-                    error: "خطا",
-                    onSaved: (p0) {},
-                  ),
-                  SizedBox(
-                    height: getHeight(context, 0.03),
-                  ),
-                  TextInput(
-                    controller: firstNameController,
-                    hintText: "نام",
-                    icon: Icons.person,
-                    onSaved: (p0) {},
-                    error: "خطا",
-                    validation: Uservalidator.userNameValidator,
-                  ),
-                  SizedBox(
-                    height: getHeight(context, 0.02),
-                  ),
-                  TextInput(
-                    controller: lastNameController,
-                    hintText: "نام خانوادگی ",
-                    icon: Icons.person,
-                    onSaved: (p0) {},
-                    error: "خطا",
-                    validation: Uservalidator.userNameValidator,
-                  ),
-                  SizedBox(
-                    height: getHeight(context, 0.02),
-                  ),
-                  TellphoneInput(
-                    hintText: "شماره ثابت",
-                    icon: Icons.fax,
-                    controller: tellphoneController,
-                    error: "خطا",
-                    onSaved: (p0) {},
-                  ),
-                  SizedBox(
-                    height: getHeight(context, 0.02),
-                  ),
-                  MultiLineTextInput(
-                    controller: addressController,
-                    hintText: "آدرس",
-                    icon: Icons.add_home_work_sharp,
-                    onSaved: (p0) {},
-                    error: "خطا",
-                    validation: Uservalidator.addressUserValidator,
-                    maxLine: 3,
-                    minLine: 1,
-                  ),
-                  SizedBox(
-                    height: getHeight(context, 0.02),
-                  ),
-                  SquereButton(
-                      text: "ثبت نام",
-                      press: () {
-                        if (_formKey.currentState!.validate()) {
-                          // context.read<LoginBloc>().add(FillPhoneNumberEvent(
-                          //     phonenumber: phoneNumberController.text));
-                        }
-                      },
-                      color: buttonColor,
-                      textColor: buttonTextColor)
-                ],
+                    SizedBox(
+                      height: getHeight(context, 0.14),
+                    ),
+                    PhoneNumberInput(
+                      hintText: "شماره همراه",
+                      icon: Icons.phone,
+                      controller: phoneNumberController,
+                      error: "خطا",
+                      onSaved: (p0) {},
+                    ),
+                    SizedBox(
+                      height: getHeight(context, 0.03),
+                    ),
+                    TextInput(
+                      controller: firstNameController,
+                      hintText: "نام",
+                      icon: Icons.person,
+                      onSaved: (p0) {},
+                      error: "خطا",
+                      validation: Uservalidator.userNameValidator,
+                    ),
+                    SizedBox(
+                      height: getHeight(context, 0.02),
+                    ),
+                    TextInput(
+                      controller: lastNameController,
+                      hintText: "نام خانوادگی ",
+                      icon: Icons.person,
+                      onSaved: (p0) {},
+                      error: "خطا",
+                      validation: Uservalidator.userNameValidator,
+                    ),
+                    SizedBox(
+                      height: getHeight(context, 0.02),
+                    ),
+                    TellphoneInput(
+                      hintText: "شماره ثابت",
+                      icon: Icons.fax,
+                      controller: tellphoneController,
+                      error: "خطا",
+                      onSaved: (p0) {},
+                    ),
+                    SizedBox(
+                      height: getHeight(context, 0.02),
+                    ),
+                    MultiLineTextInput(
+                      controller: addressController,
+                      hintText: "آدرس",
+                      icon: Icons.add_home_work_sharp,
+                      onSaved: (p0) {},
+                      error: "خطا",
+                      validation: Uservalidator.addressUserValidator,
+                      maxLine: 3,
+                      minLine: 1,
+                    ),
+                    SizedBox(
+                      height: getHeight(context, 0.02),
+                    ),
+                    SquereButton(
+                        text: "ثبت نام",
+                        press: () {
+                          if (_formKey.currentState!.validate()) {
+                            // context
+                            //     .read<RegisterBloc>()
+                            //     .add(InitialMapPageEvent());
+                          }
+                        },
+                        color: buttonColor,
+                        textColor: buttonTextColor)
+                  ],
+                ),
               ),
             ),
           );
         }
         if (state.registerEvent is InitialMapPageEvent) {
-          print(state.lang);
-          return LocationPicker(state.lang, state.laut);
+          final InitialMapPageEvent model =
+              state.registerEvent as InitialMapPageEvent;
+          return LocationPicker(
+            model.lang,
+            model.laut,
+            press: (value) {},
+          );
         } else {
           return Padding(
             padding: EdgeInsets.only(top: getHeight(context, 0.1)),

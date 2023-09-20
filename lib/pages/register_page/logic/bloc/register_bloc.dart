@@ -10,12 +10,11 @@ part 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final UserRepository userRepository;
-  late double? lang;
-  late double? laut;
 
   RegisterBloc({required this.userRepository})
       : super(RegisterState(registerEvent: InitialRegisterPageEvent())) {
-    on<InitialRegisterPageEvent>(_checkPermision);
+    on<FillFormPageEvent>(_registerUser);
+    //   on<FillFormPageEvent>(_registerUser);
   }
 
   FutureOr<void> _checkPermision(
@@ -41,18 +40,27 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
     if (permission == LocationPermission.always ||
         permission == LocationPermission.whileInUse) {
-      emit(state.copyWith(InitialFormPageEvent()));
+      // emit(state.copyWith(InitialFormPageEvent()));
     }
 
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
 
-    lang = position.longitude;
-    laut = position.latitude;
-    print(position);
+    // emit(state.copyWith(InitialMapPageEvent(
+    //     lang: position.longitude, laut: position.latitude)));
+  }
 
-    if (position.latitude > 0) {
-      emit(state.copyWith(InitialMapPageEvent()));
-    }
+  // FutureOr<void> _registerUser(
+  //     FillFormPageEvent event, Emitter<RegisterState> emit) {
+  //   emit(state.copyWith(LoadingPageEvent()));
+  // }
+
+  FutureOr<void> _registerUser(
+      FillFormPageEvent event, Emitter<RegisterState> emit) {
+    emit(state.copyWith(LoadingPageEvent()));
+
+    emit(state.copyWith(InitialRegisterPageEvent()));
+
+    emit(state.copyWith(LoadingPageEvent()));
   }
 }

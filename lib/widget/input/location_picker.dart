@@ -1,9 +1,9 @@
-import 'dart:math';
-
-import 'package:alotazrighat_application/widget/button/zoom_map_button.dart';
+import 'package:alotazrighat_application/widget/button/squre_button.dart';
+import 'package:alotazrighat_application/widget/color_utility.dart';
+import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:latlong2/latlong.dart';
 
 class LocationPicker extends StatefulWidget {
@@ -11,8 +11,10 @@ class LocationPicker extends StatefulWidget {
 
   double? lang;
   double? laut;
+  final ValueChanged press;
 
-  LocationPicker(this.lang, this.laut, {Key? key}) : super(key: key);
+  LocationPicker(this.lang, this.laut, {Key? key, required this.press})
+      : super(key: key);
 
   @override
   PointToLatlngPage createState() {
@@ -43,22 +45,13 @@ class PointToLatlngPage extends State<LocationPicker> {
         FlutterMap(
           mapController: mapController,
           options: MapOptions(
-            onMapEvent: (event) {
-              updatePoint(null, context);
-            },
-            center: LatLng(widget.laut ?? 5, widget.lang ?? 5),
-            zoom: 11,
-            minZoom: 3,
-          ),
-          // nonRotatedChildren: [
-          //   FlutterMapZoomButtons(
-          //     minZoom: 4,
-          //     maxZoom: 19,
-          //     mini: true,
-          //     padding: 10,
-          //     alignment: Alignment.bottomRight,
-          //   ),
-          // ],
+              onMapEvent: (event) {
+                updatePoint(null, context);
+              },
+              center: LatLng(widget.laut ?? 5, widget.lang ?? 5),
+              zoom: 18,
+              maxZoom: 18,
+              minZoom: 18),
           children: [
             TileLayer(
               urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -71,29 +64,59 @@ class PointToLatlngPage extends State<LocationPicker> {
                     width: pointSize,
                     height: pointSize,
                     point: latLng!,
-                    builder: (ctx) => const FlutterLogo(),
+                    builder: (ctx) => SvgPicture.asset(
+                      "assets/icons/location.svg",
+                      width: getWidth(context, 0.07),
+                    ),
                   )
                 ],
               ),
           ],
         ),
-        Container(
-            color: Colors.white,
-            height: 0,
-            child: Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Text(
-                //   'flutter logo (${latLng?.latitude.toStringAsPrecision(4)},${latLng?.longitude.toStringAsPrecision(4)})',
-                //   textAlign: TextAlign.center,
-                // ),
-              ],
-            ))),
-        Positioned(
-            top: pointY - pointSize / 2,
-            left: _getPointX(context) - pointSize / 2,
-            child: Icon(Icons.crop_free, size: pointSize))
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Align(
+                alignment: Alignment.bottomRight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          bottom: getHeight(context, 0.02),
+                          right: getWidth(context, 0.03)),
+                      child: FloatingActionButton(
+                        onPressed: () {
+                          latLng = LatLng(widget.laut ?? 5, widget.lang ?? 5);
+                          mapController.move(
+                              LatLng(widget.laut ?? 5, widget.lang ?? 5), 18);
+                          setState(() {});
+                        },
+                        backgroundColor: Colors.white,
+                        child: const Icon(
+                          Icons.location_on,
+                          color: bgColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SquereButton(
+                    text: "تایید مکان نما ",
+                    color: bgColor,
+                    press: () {},
+                    textColor: Colors.white,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ],
     );
   }

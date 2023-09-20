@@ -1,4 +1,3 @@
-import 'package:alotazrighat_application/widget/input/location_picker.dart';
 import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:alotazrighat_application/widget/shapes/wave_shape.dart';
 import 'package:animate_do/animate_do.dart';

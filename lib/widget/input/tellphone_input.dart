@@ -53,7 +53,7 @@ class TellphoneInput extends StatelessWidget {
               fontWeight: FontWeight.w500,
               fontSize: getWidth(context, 0.05)),
         ),
-        validator: Uservalidator.phoneNumberValidator,
+        validator: Uservalidator.tellphoneValidator,
         onChanged: onSaved,
         autofocus: false,
         keyboardType: TextInputType.phone,

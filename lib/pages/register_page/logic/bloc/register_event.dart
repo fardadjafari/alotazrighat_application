@@ -11,6 +11,28 @@ class TurnOnGPSEvent extends RegisterEvent {}
 
 class FaildPermisionEvent extends RegisterEvent {}
 
-class InitialFormPageEvent extends RegisterEvent {}
+class FillFormPageEvent extends RegisterEvent {
+  final String firstName;
 
-class InitialMapPageEvent extends RegisterEvent {}
+  final String lastName;
+
+  final String phoneNumber;
+
+  final String telephone;
+
+  final String address;
+
+  FillFormPageEvent(
+      {required this.firstName,
+      required this.lastName,
+      required this.phoneNumber,
+      required this.telephone,
+      required this.address});
+}
+
+class InitialMapPageEvent extends RegisterEvent {
+  final double lang;
+  final double laut;
+
+  InitialMapPageEvent({required this.lang, required this.laut});
+}
