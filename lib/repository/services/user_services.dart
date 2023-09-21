@@ -4,6 +4,7 @@ import 'package:alotazrighat_application/constants/constans_variable.dart';
 import 'package:alotazrighat_application/repository/database/hive_table.dart';
 import 'package:alotazrighat_application/repository/models/auth/login_decoder.dart';
 import 'package:alotazrighat_application/repository/models/auth/login_user.dart';
+import 'package:alotazrighat_application/repository/models/auth/register_user.dart';
 import 'package:alotazrighat_application/repository/models/auth/send_code.dart';
 import 'package:alotazrighat_application/repository/models/setting/profile_table.dart';
 import 'package:alotazrighat_application/tools/network/http_status.dart';
@@ -97,5 +98,14 @@ class UserService {
     } catch (e) {
       return false;
     }
+  }
+
+  Future<OperationResult> registerUser(RegisterUser registerUser) async {
+    var jsonModel = jsonEncode(registerUser.toJson());
+    var response = await httpClient
+        .post(getUrl(url: StaticVariable.registerUser), data: jsonModel);
+    return OperationResult(
+        statusHttps: OperationResult.translateStatusHttps(response.statusCode),
+        message: response.data);
   }
 }

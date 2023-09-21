@@ -1,4 +1,5 @@
 import 'package:alotazrighat_application/repository/models/auth/login_user.dart';
+import 'package:alotazrighat_application/repository/models/auth/register_user.dart';
 import 'package:alotazrighat_application/repository/models/auth/send_code.dart';
 import 'package:alotazrighat_application/repository/services/user_services.dart';
 import 'package:alotazrighat_application/tools/network/http_status.dart';
@@ -14,4 +15,7 @@ class UserRepository {
 
   Future<OperationResult> loginUser(String phoneNumber, password) => userService
       .loginUser(LoginUser(phoneNumber: phoneNumber, password: password));
+
+  Future<OperationResult> registerUser(RegisterUser registerModel) =>
+      userService.registerUser(registerModel);
 }

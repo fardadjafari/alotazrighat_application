@@ -34,8 +34,7 @@ void main() async {
         ),
         BlocProvider(
           create: (context) =>
-              RegisterBloc(userRepository: context.read<UserRepository>())
-                ..add(InitialRegisterPageEvent()),
+              RegisterBloc(userRepository: context.read<UserRepository>()),
         ),
       ],
       child: CustomerApp(appRouter: AppRouter()),
