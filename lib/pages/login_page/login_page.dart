@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:alotazrighat_application/pages/helph_page/helph_page.dart';
 import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:alotazrighat_application/widget/shapes/top_wave_shap.dart';
 import 'package:alotazrighat_application/widget/shapes/wave_shape.dart';
@@ -12,27 +15,30 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Stack(children: [
-        FadeInDown(
-          child: Center(
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: WaveWidget(heightWave: getHeight(context, 0.01)),
+    return WillPopScope(
+      onWillPop: () => exit(0),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Stack(children: [
+          FadeInDown(
+            child: Center(
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: WaveWidget(heightWave: getHeight(context, 0.01)),
+              ),
             ),
           ),
-        ),
-        FadeInUp(
-          child: const Center(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: BottomWaveWidget(),
+          FadeInUp(
+            child: const Center(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: BottomWaveWidget(),
+              ),
             ),
           ),
-        ),
-        const Body(),
-      ]),
+          const Body(),
+        ]),
+      ),
     );
   }
 }

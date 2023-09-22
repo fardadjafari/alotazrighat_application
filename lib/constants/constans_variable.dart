@@ -6,3 +6,5 @@ class StaticVariable {
 
   static String iconPath = "assets/icons/";
 }
+
+enum NavbarItem { home, request, activeRequest }

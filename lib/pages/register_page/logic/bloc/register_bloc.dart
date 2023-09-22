@@ -18,45 +18,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     on<FillFormPageEvent>(_registerUser);
     on<FillPasswordEvent>(_loginUser);
     on<CompletFormPageEvent>(_completedRegister);
-  }
-
-  FutureOr<void> _checkPermision(
-      InitialRegisterPageEvent event, Emitter<RegisterState> emit) async {
-    emit(state.copyWith(LoadingPageEvent()));
-
-    bool servicestatus = await Geolocator.isLocationServiceEnabled();
-
-    if (!servicestatus) {
-      emit(state.copyWith(TurnOnGPSEvent()));
-    }
-
-    LocationPermission permission = await Geolocator.checkPermission();
-
-    permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied ||
-        permission == LocationPermission.deniedForever ||
-        permission == LocationPermission.denied) {
-      emit(state.copyWith(FaildPermisionEvent()));
-    }
-
-    print(permission.toString());
-
-    if (permission == LocationPermission.always ||
-        permission == LocationPermission.whileInUse) {
-      // emit(state.copyWith(InitialFormPageEvent()));
-    }
-
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-
-    emit(state.copyWith(InitialMapPageEvent(
-        lang: position.longitude, laut: position.latitude)));
+    on<InitialRegisterPageEvent>(_initialRegisterPage);
   }
 
   Future<void> _registerUser(
       FillFormPageEvent event, Emitter<RegisterState> emit) async {
-    emit(state.copyWith(LoadingPageEvent()));
-
     bool servicestatus = await Geolocator.isLocationServiceEnabled();
 
     if (!servicestatus) {
@@ -125,5 +91,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       emit(state.copyWith(ErrorPasswordEvent()));
       emit(state.copyWith(InitialPasswordPageEvent()));
     }
+  }
+
+  FutureOr<void> _initialRegisterPage(
+      InitialRegisterPageEvent event, Emitter<RegisterState> emit) {
+    emit(state.copyWith(LoadingPageEvent()));
+
+    emit(state.copyWith(InitialRegisterPageEvent()));
   }
 }

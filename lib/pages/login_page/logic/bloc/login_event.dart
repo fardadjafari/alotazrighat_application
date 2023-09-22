@@ -5,8 +5,6 @@ abstract class LoginUserEvent {}
 
 class InitialPageEvent extends LoginUserEvent {}
 
-class InitialPheneNumberPageEvent extends LoginUserEvent {}
-
 class InitialPasswordPageEvent extends LoginUserEvent {}
 
 class LoadingPageEvent extends LoginUserEvent {}

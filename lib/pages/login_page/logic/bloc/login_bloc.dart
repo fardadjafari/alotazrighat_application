@@ -11,6 +11,7 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginUserEvent, LoginUserState> {
   LoginBloc({required this.userRepository})
       : super(LoginUserState(loginUserEvent: InitialPageEvent())) {
+    on<InitialPageEvent>(_InitLoginPage);
     on<FillPhoneNumberEvent>(_sendCode);
     on<FillPasswordEvent>(_ckeckDataLogin);
   }
@@ -18,10 +19,6 @@ class LoginBloc extends Bloc<LoginUserEvent, LoginUserState> {
 
   FutureOr<void> _sendCode(
       FillPhoneNumberEvent event, Emitter<LoginUserState> emit) async {
-    emit(state.copyWith(LoadingPageEvent()));
-
-    emit(state.copyWith(InitialPheneNumberPageEvent()));
-
     emit(state.copyWith(LoadingPageEvent()));
 
     var result = await userRepository.sendSMSCode(event.phonenumber);
@@ -47,5 +44,12 @@ class LoginBloc extends Bloc<LoginUserEvent, LoginUserState> {
       emit(state.copyWith(ErrorPasswordEvent()));
       emit(state.copyWith(InitialPasswordPageEvent()));
     }
+  }
+
+  FutureOr<void> _InitLoginPage(
+      InitialPageEvent event, Emitter<LoginUserState> emit) {
+    emit(state.copyWith(LoadingPageEvent()));
+
+    emit(state.copyWith(InitialPageEvent()));
   }
 }

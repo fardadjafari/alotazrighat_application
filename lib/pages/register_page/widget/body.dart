@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:alotazrighat_application/constants/constans_variable.dart';
 import 'package:alotazrighat_application/pages/home_page/home_page.dart';
+import 'package:alotazrighat_application/pages/layout_page.dart';
 import 'package:alotazrighat_application/pages/login_page/login_page.dart';
 import 'package:alotazrighat_application/pages/register_page/logic/bloc/register_bloc.dart';
 import 'package:alotazrighat_application/pages/register_page/widget/location_picker.dart';
@@ -42,6 +43,12 @@ class _BodyState extends State<Body> {
   int _remainingTime = 180;
   late Timer _timer;
   final _focusNodeInput = FocusNode();
+
+  @override
+  void initState() {
+    context.read<RegisterBloc>().add(InitialRegisterPageEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -254,9 +261,8 @@ class _BodyState extends State<Body> {
               ));
         }
         if (state.registerEvent is FinishedLoginEvent) {
-          Future.delayed(const Duration(seconds: 8), () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const HomePage()));
+          Future.delayed(const Duration(seconds: 5), () {
+            Navigator.pushNamed(context, Layout.screenId);
           });
           return Center(
               child: Column(children: [

@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:alotazrighat_application/constants/constans_variable.dart';
 import 'package:alotazrighat_application/pages/home_page/home_page.dart';
+import 'package:alotazrighat_application/pages/layout_page.dart';
+import 'package:alotazrighat_application/pages/main_page.dart';
 import 'package:alotazrighat_application/widget/button/squre_button.dart';
 import 'package:alotazrighat_application/widget/color_utility.dart';
 import 'package:alotazrighat_application/widget/input/password_input.dart';
@@ -44,7 +46,7 @@ class _BodyState extends State<Body> {
 
   @override
   void initState() {
-    //context.read<LoginBloc>().add(InitialPageEvent());
+    context.read<LoginBloc>().add(InitialPageEvent());
     super.initState();
   }
 
@@ -118,7 +120,20 @@ class _BodyState extends State<Body> {
                         }
                       },
                       color: buttonColor,
-                      textColor: buttonTextColor)
+                      textColor: buttonTextColor),
+                  SizedBox(
+                    height: getHeight(context, 0.01),
+                  ),
+                  Visibility(
+                    visible: state.loginUserEvent is ErrorPhoneNumberEvent
+                        ? true
+                        : false,
+                    child: SquereButton(
+                        text: "ثبت نام",
+                        press: () {},
+                        color: buttonColor,
+                        textColor: buttonTextColor),
+                  ),
                 ],
               ),
             ),
@@ -180,9 +195,8 @@ class _BodyState extends State<Body> {
             ),
           );
         } else if (state.loginUserEvent is CompletedLoginEvent) {
-          Future.delayed(const Duration(seconds: 8), () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const HomePage()));
+          Future.delayed(const Duration(seconds: 5), () {
+            Navigator.pushNamed(context, Layout.screenId);
           });
           return Center(
               child: Column(children: [

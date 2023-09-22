@@ -1,4 +1,5 @@
 import 'package:alotazrighat_application/pages/login_page/logic/bloc/login_bloc.dart';
+import 'package:alotazrighat_application/pages/main_page.dart';
 import 'package:alotazrighat_application/pages/register_page/logic/bloc/register_bloc.dart';
 import 'package:alotazrighat_application/pages/welcom_page/logic/bloc/welcom_bloc.dart';
 import 'package:alotazrighat_application/pages/welcom_page/welcom_page.dart';
