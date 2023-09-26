@@ -5,7 +5,10 @@ class OperationResult {
 
   final StatusHttps statusHttps;
 
-  OperationResult({this.httpCode, this.message, required this.statusHttps});
+  final Object? data;
+
+  OperationResult(this.data,
+      {this.httpCode, this.message, required this.statusHttps});
 
   static StatusHttps translateStatusHttps(int? code) {
     switch (code) {

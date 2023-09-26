@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:alotazrighat_application/constants/constans_variable.dart';
-import 'package:alotazrighat_application/pages/home_page/home_page.dart';
 import 'package:alotazrighat_application/pages/layout_page.dart';
 import 'package:alotazrighat_application/pages/login_page/login_page.dart';
 import 'package:alotazrighat_application/pages/register_page/logic/bloc/register_bloc.dart';

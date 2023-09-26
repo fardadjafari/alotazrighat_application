@@ -59,7 +59,7 @@ class UserService {
     var response = await httpClient
         .post(getUrl(url: StaticVariable.smsSendCode), data: jsonModel);
 
-    return OperationResult(
+    return OperationResult(null,
         httpCode: response.statusCode,
         statusHttps: OperationResult.translateStatusHttps(response.statusCode),
         message: response.data.toString());
@@ -76,13 +76,14 @@ class UserService {
           model.token, model.avatar, model.role, model.userFullName);
 
       if (result) {
-        return OperationResult(statusHttps: StatusHttps.ok);
+        return OperationResult(null, statusHttps: StatusHttps.ok);
       } else {
-        return OperationResult(statusHttps: StatusHttps.faildRequest);
+        return OperationResult(null, statusHttps: StatusHttps.faildRequest);
       }
     }
 
-    return OperationResult(statusHttps: StatusHttps.badRequest, httpCode: 400);
+    return OperationResult(null,
+        statusHttps: StatusHttps.badRequest, httpCode: 400);
   }
 
   Future<bool> _createTableSetting(String token, avatar, fullName, role) async {
@@ -104,7 +105,7 @@ class UserService {
     var jsonModel = jsonEncode(registerUser.toJson());
     var response = await httpClient
         .post(getUrl(url: StaticVariable.registerUser), data: jsonModel);
-    return OperationResult(
+    return OperationResult(null,
         statusHttps: OperationResult.translateStatusHttps(response.statusCode),
         message: response.data);
   }

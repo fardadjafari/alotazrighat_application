@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:alotazrighat_application/constants/constans_variable.dart';
-import 'package:alotazrighat_application/pages/home_page/home_page.dart';
 import 'package:alotazrighat_application/pages/layout_page.dart';
-import 'package:alotazrighat_application/pages/main_page.dart';
 import 'package:alotazrighat_application/widget/button/squre_button.dart';
 import 'package:alotazrighat_application/widget/color_utility.dart';
 import 'package:alotazrighat_application/widget/input/password_input.dart';

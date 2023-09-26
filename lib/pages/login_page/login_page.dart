@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:alotazrighat_application/pages/helph_page/helph_page.dart';
 import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:alotazrighat_application/widget/shapes/top_wave_shap.dart';
 import 'package:alotazrighat_application/widget/shapes/wave_shape.dart';

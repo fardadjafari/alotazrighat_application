@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
             return Stack(
               children: [
                 Padding(
-                    padding: EdgeInsets.only(bottom: getHeight(context, 0.8)),
+                    padding: EdgeInsets.only(bottom: getHeight(context, 0.02)),
                     child: BlocBuilder<NavigationCubit, NavigationState>(
                       builder: (context, state) {
                         if (state.navbarItem == NavbarItem.home) {
