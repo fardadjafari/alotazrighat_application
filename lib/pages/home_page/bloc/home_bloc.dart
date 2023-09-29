@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:alotazrighat_application/repository/models/service/service_item.dart';
-import 'package:alotazrighat_application/repository/models/service/service_list.dart';
 import 'package:alotazrighat_application/repository/request_repository.dart';
 import 'package:bloc/bloc.dart';
 

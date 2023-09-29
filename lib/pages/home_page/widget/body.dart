@@ -16,6 +16,11 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   void initState() {
     context.read<HomeBloc>().add(InitialPageEvent());
     super.initState();
@@ -23,34 +28,31 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: getWidth(context, 0.17)),
-      child: BlocBuilder<HomeBloc, HomeState>(
-        builder: (context, state) {
-          print(state.homeEvent);
-          if (state.homeEvent is LoadServicePageEvent) {
-            var listService = state.homeEvent as LoadServicePageEvent;
-            return ListView.separated(
-              itemCount: listService.serviceList.length,
-              separatorBuilder: (context, index) => SizedBox(
-                height: getHeight(context, 0.02),
-              ),
-              itemBuilder: (context, index) {
-                return ServiceItem(
-                    title: listService.serviceList[index].title,
-                    imagePath: listService.serviceList[index].icon);
-              },
-            );
-          } else {
-            return Center(
-              child: LoadingWidget(
-                size: getHeight(context, 0.00019),
-                color: bgColor,
-              ),
-            );
-          }
-        },
-      ),
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        print(state.homeEvent);
+        if (state.homeEvent is LoadServicePageEvent) {
+          var listService = state.homeEvent as LoadServicePageEvent;
+          return ListView.separated(
+            itemCount: listService.serviceList.length,
+            separatorBuilder: (context, index) => SizedBox(
+              height: getHeight(context, 0.02),
+            ),
+            itemBuilder: (context, index) {
+              return ServiceItem(
+                  title: listService.serviceList[index].title,
+                  imagePath: listService.serviceList[index].icon);
+            },
+          );
+        } else {
+          return Center(
+            child: LoadingWidget(
+              size: getHeight(context, 0.00019),
+              color: bgColor,
+            ),
+          );
+        }
+      },
     );
   }
 }

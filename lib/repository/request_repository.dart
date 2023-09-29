@@ -7,4 +7,12 @@ class RequestRepository {
   RequestRepository({required this.requestService});
 
   Future<OperationResult> getMainService() => requestService.getMainService();
+
+  Future<OperationResult> getActiveRequest() =>
+      requestService.getActiveRequest();
+
+  Future<String> getHeader() => requestService.getHeaderToken();
+
+  Future<OperationResult> rejectNurse(String code) =>
+      requestService.rejectRequest(code);
 }

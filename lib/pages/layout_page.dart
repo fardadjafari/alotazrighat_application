@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:alotazrighat_application/pages/active_request/logic/bloc/active_bloc.dart';
 import 'package:alotazrighat_application/pages/cubit/navigation_cubit.dart';
 import 'package:alotazrighat_application/pages/home_page/bloc/home_bloc.dart';
 import 'package:alotazrighat_application/pages/main_page.dart';
@@ -29,7 +30,10 @@ class Layout extends StatelessWidget {
             BlocProvider(
               create: (context) => HomeBloc(
                   requestRepository: context.read<RequestRepository>()),
-            )
+            ),
+            BlocProvider(
+                create: (context) => ActiveBloc(
+                    requestRepository: context.read<RequestRepository>()))
           ],
           child: const MainPage(),
         ),
