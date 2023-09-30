@@ -1,3 +1,4 @@
+import 'package:alotazrighat_application/repository/models/request/finished_request.dart';
 import 'package:alotazrighat_application/repository/services/request_service.dart';
 import 'package:alotazrighat_application/tools/network/http_status.dart';
 
@@ -15,4 +16,9 @@ class RequestRepository {
 
   Future<OperationResult> rejectNurse(String code) =>
       requestService.rejectRequest(code);
+
+  Future<OperationResult> finishedRequest(FinishedNurse finishedNurse) =>
+      requestService.finishRequest(finishedNurse);
+
+  Future<OperationResult> getAllRequest() => requestService.getAllRequest();
 }

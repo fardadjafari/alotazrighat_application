@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:alotazrighat_application/repository/models/request/active_request_model.dart';
+import 'package:alotazrighat_application/repository/models/request/finished_request.dart';
 import 'package:alotazrighat_application/repository/request_repository.dart';
 import 'package:alotazrighat_application/tools/network/http_status.dart';
 import 'package:bloc/bloc.dart';
@@ -13,6 +14,7 @@ class ActiveBloc extends Bloc<ActiveEvent, ActiveState> {
       : super(ActiveState(activeEvent: InitialActivePageEvent())) {
     on<InitialActivePageEvent>(_initPage);
     on<RejectRequestEvent>(rejectRequest);
+    on<FinishRequestEvent>(finishRequest);
   }
   final RequestRepository requestRepository;
 
@@ -40,5 +42,16 @@ class ActiveBloc extends Bloc<ActiveEvent, ActiveState> {
     }
 
     emit(state.copyWith(FaildRejectEvent()));
+  }
+
+  FutureOr<void> finishRequest(
+      FinishRequestEvent event, Emitter<ActiveState> emit) async {
+    var result = await requestRepository.finishedRequest(event.finishNurse);
+
+    if (result.statusHttps == StatusHttps.ok) {
+      emit(state.copyWith(ComletedFinishEvent()));
+    }
+
+    emit(state.copyWith(FaildfinishEvent()));
   }
 }

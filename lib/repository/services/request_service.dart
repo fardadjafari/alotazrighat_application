@@ -3,7 +3,10 @@ import 'dart:convert';
 import 'package:alotazrighat_application/constants/constans_variable.dart';
 import 'package:alotazrighat_application/repository/database/hive_table.dart';
 import 'package:alotazrighat_application/repository/models/request/active_request_model.dart';
+import 'package:alotazrighat_application/repository/models/request/enums/request_status.dart';
+import 'package:alotazrighat_application/repository/models/request/finished_request.dart';
 import 'package:alotazrighat_application/repository/models/request/reject_request.dart';
+import 'package:alotazrighat_application/repository/models/request/result_request_list.dart';
 import 'package:alotazrighat_application/repository/models/service/service_item.dart';
 import 'package:alotazrighat_application/repository/models/setting/profile_table.dart';
 import 'package:alotazrighat_application/tools/network/http_status.dart';
@@ -96,6 +99,41 @@ class RequestService {
         options: Options(headers: {"Authorization": "Bearer $token"}));
 
     return OperationResult(null,
+        statusHttps: OperationResult.translateStatusHttps(response.statusCode),
+        message: response.statusMessage);
+  }
+
+  Future<OperationResult> finishRequest(FinishedNurse finishedNurse) async {
+    var token = await _getToken();
+
+    var jsonModel = jsonEncode(finishedNurse.toJson());
+    var response = await httpClient.post(
+        getUrl(url: StaticVariable.finishedRequest),
+        data: jsonModel,
+        options: Options(headers: {"Authorization": "Bearer $token"}));
+
+    return OperationResult(null,
+        statusHttps: OperationResult.translateStatusHttps(response.statusCode),
+        message: response.statusMessage);
+  }
+
+  Future<OperationResult> getAllRequest() async {
+    var token = await _getToken();
+    var to = DateTime.now();
+    var from = DateTime(to.year, to.month - 1, to.day);
+
+    var response = await httpClient.get(getUrl(url: StaticVariable.service),
+        options: Options(headers: {"Authorization": "Bearer $token"}),
+        queryParameters: {
+          "page": "1",
+          "from": "$from",
+          "to": "$to",
+          "status": "${RequestStatus.Finish}"
+        });
+    List<ResultRequst> requestList = List<ResultRequst>.from(
+        response.data.map((model) => ResultRequst.fromJson(model)));
+
+    return OperationResult(requestList,
         statusHttps: OperationResult.translateStatusHttps(response.statusCode),
         message: response.statusMessage);
   }

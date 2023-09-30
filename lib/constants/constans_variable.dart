@@ -10,6 +10,8 @@ class StaticVariable {
   static String service = "Customer/Service/All";
   static String activeRequest = "Customer/NurseRequest/GetAllActive";
   static String rejectRequest = "Customer/NurseRequest/Reject";
+  static String finishedRequest = "Customer/NurseRequest/finish";
+  static String getAllRequest = "Customer/NurseRequest/GetAll";
 
   static String iconPath = "assets/icons/";
 }

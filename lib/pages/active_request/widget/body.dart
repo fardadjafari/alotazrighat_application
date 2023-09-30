@@ -34,6 +34,7 @@ class _BodyState extends State<Body> {
       padding: EdgeInsets.only(bottom: getWidth(context, 0.17)),
       child: BlocConsumer<ActiveBloc, ActiveState>(
         listener: (context, state) {
+          print(state.activeEvent);
           if (state.activeEvent is CompletedRejectEvent) {
             alertDialogWarning(
                 context,
@@ -48,6 +49,14 @@ class _BodyState extends State<Body> {
             alertDialogError(
                 context, "لغو درخواست", "آیا از لفو درخواست حود مطمئت هستید ؟");
 
+            context.read<ActiveBloc>().add(InitialActivePageEvent());
+          }
+
+          if (state.activeEvent is ComletedFinishEvent) {
+            context.read<ActiveBloc>().add(InitialActivePageEvent());
+          }
+
+          if (state.activeEvent is FaildRejectEvent) {
             context.read<ActiveBloc>().add(InitialActivePageEvent());
           }
         },

@@ -25,3 +25,13 @@ class RejectRequestEvent extends ActiveEvent {
 class CompletedRejectEvent extends ActiveEvent {}
 
 class FaildRejectEvent extends ActiveEvent {}
+
+class FinishRequestEvent extends ActiveEvent {
+  final FinishedNurse finishNurse;
+
+  FinishRequestEvent({required this.finishNurse});
+}
+
+class ComletedFinishEvent extends ActiveEvent {}
+
+class FaildfinishEvent extends ActiveEvent {}

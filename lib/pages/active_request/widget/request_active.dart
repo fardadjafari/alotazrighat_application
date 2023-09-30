@@ -1,17 +1,24 @@
 import 'package:alotazrighat_application/constants/constans_variable.dart';
 import 'package:alotazrighat_application/pages/active_request/logic/bloc/active_bloc.dart';
 import 'package:alotazrighat_application/pages/active_request/widget/item_request.dart';
+import 'package:alotazrighat_application/repository/enums/feelingRate.dart';
 import 'package:alotazrighat_application/repository/models/request/active_request_model.dart';
 import 'package:alotazrighat_application/repository/models/request/enums/request_status.dart';
+import 'package:alotazrighat_application/repository/models/request/finished_request.dart';
 import 'package:alotazrighat_application/tools/digit/date_time.dart';
+import 'package:alotazrighat_application/tools/validator/user_validator.dart';
+import 'package:alotazrighat_application/widget/button/squre_button.dart';
 import 'package:alotazrighat_application/widget/color_utility.dart';
+import 'package:alotazrighat_application/widget/input/multiline_input.dart';
 import 'package:alotazrighat_application/widget/lable/text_lable.dart';
 import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:alotazrighat_application/widget/popup/awesome_alert.dart';
+import 'package:alotazrighat_application/widget/popup/awesome_rating.dart';
 import 'package:alotazrighat_application/widget/popup/awsome_image.dart';
 import 'package:alotazrighat_application/widget/shapes/space.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,6 +30,8 @@ class ActiveRequestItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController commentController = TextEditingController();
+    String filingRate = "Bad";
     if (activeRequestList.status == RequestStatus.Accept) {
       return Container(
           width: getAllWidth(context),
@@ -97,6 +106,7 @@ class ActiveRequestItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               FloatingActionButton(
+                                heroTag: "card",
                                 backgroundColor: Colors.white,
                                 foregroundColor: Colors.blueAccent,
                                 child:
@@ -112,12 +122,117 @@ class ActiveRequestItem extends StatelessWidget {
                                 },
                               ),
                               FloatingActionButton(
+                                heroTag: "accept",
                                 backgroundColor: Colors.white,
                                 foregroundColor: Colors.green,
                                 child: const Icon(Icons.check_circle),
-                                onPressed: () {},
+                                onPressed: () {
+                                  alertDialogRate(
+                                      context,
+                                      "ثبت نظر شما",
+                                      Column(
+                                        children: [
+                                          TextLable(
+                                              text:
+                                                  " با تشکر از اعتماد شما نظر خود را ثبت کنید",
+                                              colorText: bgColor,
+                                              fontWeightText: FontWeight.w600,
+                                              fontSizeText:
+                                                  getWidth(context, 0.04),
+                                              textAlign: TextAlign.center),
+                                          SizedBox(
+                                            height: getHeight(context, 0.02),
+                                          ),
+                                          Container(
+                                              child: RatingBar.builder(
+                                            initialRating: 3,
+                                            itemCount: 5,
+                                            itemBuilder: (context, index) {
+                                              switch (index) {
+                                                case 0:
+                                                  return const Icon(
+                                                    Icons
+                                                        .sentiment_very_dissatisfied,
+                                                    color: Colors.red,
+                                                  );
+                                                case 1:
+                                                  return const Icon(
+                                                    Icons
+                                                        .sentiment_dissatisfied,
+                                                    color: Colors.redAccent,
+                                                  );
+                                                case 2:
+                                                  return const Icon(
+                                                    Icons.sentiment_neutral,
+                                                    color: Colors.amber,
+                                                  );
+                                                case 3:
+                                                  return const Icon(
+                                                    Icons.sentiment_satisfied,
+                                                    color: Colors.lightGreen,
+                                                  );
+                                                case 4:
+                                                  return const Icon(
+                                                    Icons
+                                                        .sentiment_very_satisfied,
+                                                    color: Colors.green,
+                                                  );
+
+                                                default:
+                                                  return const Icon(
+                                                    Icons
+                                                        .sentiment_very_dissatisfied,
+                                                    color: Colors.green,
+                                                  );
+                                              }
+                                            },
+                                            onRatingUpdate: (rating) {
+                                              filingRate = FeelingTypeExtensions
+                                                  .translateToFarsi(rating);
+
+                                              print(filingRate);
+                                            },
+                                          )),
+                                          SizedBox(
+                                            height: getHeight(context, 0.02),
+                                          ),
+                                          MultiLineTextInput(
+                                            hintText:
+                                                "نظرات خود را یاداشت کنید",
+                                            icon: Icons.comment,
+                                            maxLine: 3,
+                                            minLine: 1,
+                                            controller: commentController,
+                                            onSaved: (p0) {},
+                                            validation: Uservalidator
+                                                .commentUserValidator,
+                                          ),
+                                          SizedBox(
+                                            height: getHeight(context, 0.02),
+                                          ),
+                                        ],
+                                      ),
+                                      SquereButton(
+                                        text: "تایید نظر",
+                                        color: bgColor,
+                                        textColor: Colors.white,
+                                        press: () {
+                                          context.read<ActiveBloc>().add(
+                                              FinishRequestEvent(
+                                                  finishNurse: FinishedNurse(
+                                                      rate: filingRate,
+                                                      feelingDescription:
+                                                          commentController
+                                                              .text,
+                                                      requestCode:
+                                                          activeRequestList
+                                                              .requestCode)));
+                                        },
+                                      ));
+                                },
                               ),
                               FloatingActionButton(
+                                heroTag: "Reject1",
                                 backgroundColor: Colors.white,
                                 foregroundColor: Colors.red,
                                 child: const Icon(Icons.cancel),
@@ -135,6 +250,7 @@ class ActiveRequestItem extends StatelessWidget {
                                 },
                               ),
                               FloatingActionButton(
+                                heroTag: "call",
                                 backgroundColor: Colors.white,
                                 foregroundColor: Colors.blue,
                                 child: const Icon(Icons.phone),
@@ -219,6 +335,7 @@ class ActiveRequestItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               FloatingActionButton(
+                                heroTag: "Reject",
                                 backgroundColor: Colors.white,
                                 foregroundColor: Colors.red,
                                 child: const Icon(Icons.cancel),
