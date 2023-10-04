@@ -6,8 +6,10 @@ import 'package:alotazrighat_application/repository/models/request/active_reques
 import 'package:alotazrighat_application/repository/models/request/enums/request_status.dart';
 import 'package:alotazrighat_application/repository/models/request/finished_request.dart';
 import 'package:alotazrighat_application/tools/digit/date_time.dart';
+import 'package:alotazrighat_application/tools/validator/user_validator.dart';
 import 'package:alotazrighat_application/widget/button/squre_button.dart';
 import 'package:alotazrighat_application/widget/color_utility.dart';
+import 'package:alotazrighat_application/widget/input/multiline_input.dart';
 import 'package:alotazrighat_application/widget/lable/text_lable.dart';
 import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:alotazrighat_application/widget/popup/awesome_alert.dart';
@@ -21,10 +23,11 @@ import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ActiveRequestItem extends StatelessWidget {
-  const ActiveRequestItem(
+  ActiveRequestItem(
       {super.key, required this.activeRequestList, required this.header});
   final ActiveRequest activeRequestList;
   final String header;
+  final TextEditingController commentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -191,6 +194,17 @@ class ActiveRequestItem extends StatelessWidget {
                                           SizedBox(
                                             height: getHeight(context, 0.02),
                                           ),
+                                          MultiLineTextInput(
+                                            hintText:
+                                                "نظرات خود را یاداشت کنید",
+                                            icon: Icons.comment,
+                                            maxLine: 3,
+                                            minLine: 1,
+                                            controller: commentController,
+                                            onSaved: (p0) {},
+                                            validation: Uservalidator
+                                                .commentUserValidator,
+                                          ),
                                           SizedBox(
                                             height: getHeight(context, 0.02),
                                           ),
@@ -206,7 +220,8 @@ class ActiveRequestItem extends StatelessWidget {
                                                   finishNurse: FinishedNurse(
                                                       rate: filingRate,
                                                       feelingDescription:
-                                                          "نظری داده نشد",
+                                                          commentController
+                                                              .text,
                                                       requestCode:
                                                           activeRequestList
                                                               .requestCode)));
