@@ -12,7 +12,7 @@ alertDialogRate(
     headerAnimationLoop: false,
     title: title,
     body: widget,
-    autoDismiss: false,
+    autoDismiss: true,
     dismissOnTouchOutside: false,
     btnOk: btnwidget, // buttonsTextStyle: getBodyBoldWhiteStyle(context),
   ).show();

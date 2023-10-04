@@ -34,7 +34,6 @@ class _BodyState extends State<Body> {
       padding: EdgeInsets.only(bottom: getWidth(context, 0.17)),
       child: BlocConsumer<ActiveBloc, ActiveState>(
         listener: (context, state) {
-          print(state.activeEvent);
           if (state.activeEvent is CompletedRejectEvent) {
             alertDialogWarning(
                 context,
@@ -61,7 +60,6 @@ class _BodyState extends State<Body> {
           }
         },
         builder: (context, state) {
-          print(state.activeEvent);
           if (state.activeEvent is LoadActivePageEvent) {
             var listRequest = state.activeEvent as LoadActivePageEvent;
             if (listRequest.activeRequests.isEmpty) {

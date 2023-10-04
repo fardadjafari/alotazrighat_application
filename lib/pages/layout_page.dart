@@ -4,6 +4,8 @@ import 'package:alotazrighat_application/pages/active_request/logic/bloc/active_
 import 'package:alotazrighat_application/pages/cubit/navigation_cubit.dart';
 import 'package:alotazrighat_application/pages/home_page/bloc/home_bloc.dart';
 import 'package:alotazrighat_application/pages/main_page.dart';
+import 'package:alotazrighat_application/pages/request_page/logic/bloc/allrequest_bloc.dart';
+import 'package:alotazrighat_application/pages/send_page/logic/bloc/send_bloc.dart';
 import 'package:alotazrighat_application/repository/request_repository.dart';
 import 'package:alotazrighat_application/repository/services/request_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,7 +35,14 @@ class Layout extends StatelessWidget {
             ),
             BlocProvider(
                 create: (context) => ActiveBloc(
-                    requestRepository: context.read<RequestRepository>()))
+                    requestRepository: context.read<RequestRepository>())),
+            BlocProvider(
+                create: (context) => AllrequestBloc(
+                    requestRepository: context.read<RequestRepository>())),
+            BlocProvider(
+              create: (context) => SendBloc(
+                  requestRepository: context.read<RequestRepository>()),
+            )
           ],
           child: const MainPage(),
         ),

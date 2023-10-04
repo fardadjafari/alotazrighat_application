@@ -13,6 +13,7 @@ class ActiveRequest extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: bgColor,
+          automaticallyImplyLeading: false,
           centerTitle: true,
           title: TextLable(
               text: "درخواست های در جریان",

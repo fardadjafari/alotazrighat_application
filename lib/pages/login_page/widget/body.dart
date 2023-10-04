@@ -193,9 +193,6 @@ class _BodyState extends State<Body> {
             ),
           );
         } else if (state.loginUserEvent is CompletedLoginEvent) {
-          Future.delayed(const Duration(seconds: 5), () {
-            Navigator.pushNamed(context, Layout.screenId);
-          });
           return Center(
               child: Column(children: [
             Padding(padding: EdgeInsets.only(top: getHeight(context, 0.3))),
@@ -214,6 +211,13 @@ class _BodyState extends State<Body> {
                   fontWeightText: FontWeight.w600,
                   fontSizeText: getWidth(context, 0.05),
                   textAlign: TextAlign.center),
+            ),
+            SquereButton(
+              text: "شروع کنیم",
+              color: bgColor,
+              press: () {
+                Navigator.pushNamed(context, Layout.screenId);
+              },
             )
           ]));
         } else {

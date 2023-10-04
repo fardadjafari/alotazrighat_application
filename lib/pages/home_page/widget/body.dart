@@ -40,6 +40,7 @@ class _BodyState extends State<Body> {
             ),
             itemBuilder: (context, index) {
               return ServiceItem(
+                  uniqueCode: listService.serviceList[index].uniqueCode,
                   title: listService.serviceList[index].title,
                   imagePath: listService.serviceList[index].icon);
             },

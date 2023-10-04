@@ -6,10 +6,8 @@ import 'package:alotazrighat_application/repository/models/request/active_reques
 import 'package:alotazrighat_application/repository/models/request/enums/request_status.dart';
 import 'package:alotazrighat_application/repository/models/request/finished_request.dart';
 import 'package:alotazrighat_application/tools/digit/date_time.dart';
-import 'package:alotazrighat_application/tools/validator/user_validator.dart';
 import 'package:alotazrighat_application/widget/button/squre_button.dart';
 import 'package:alotazrighat_application/widget/color_utility.dart';
-import 'package:alotazrighat_application/widget/input/multiline_input.dart';
 import 'package:alotazrighat_application/widget/lable/text_lable.dart';
 import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:alotazrighat_application/widget/popup/awesome_alert.dart';
@@ -30,7 +28,6 @@ class ActiveRequestItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController commentController = TextEditingController();
     String filingRate = "Bad";
     if (activeRequestList.status == RequestStatus.Accept) {
       return Container(
@@ -94,8 +91,8 @@ class ActiveRequestItem extends StatelessWidget {
                           ),
                           ItemRequest(
                               title: "مبلغ پرداختی",
-                              value: NumberFormat('###,###,000')
-                                  .format(activeRequestList.finalPrice)),
+                              value:
+                                  " ${NumberFormat('###,###,000').format(activeRequestList.finalPrice)} ریال"),
                           const Sperstor(
                             color: Colors.white,
                           ),
@@ -189,23 +186,10 @@ class ActiveRequestItem extends StatelessWidget {
                                             onRatingUpdate: (rating) {
                                               filingRate = FeelingTypeExtensions
                                                   .translateToFarsi(rating);
-
-                                              print(filingRate);
                                             },
                                           )),
                                           SizedBox(
                                             height: getHeight(context, 0.02),
-                                          ),
-                                          MultiLineTextInput(
-                                            hintText:
-                                                "نظرات خود را یاداشت کنید",
-                                            icon: Icons.comment,
-                                            maxLine: 3,
-                                            minLine: 1,
-                                            controller: commentController,
-                                            onSaved: (p0) {},
-                                            validation: Uservalidator
-                                                .commentUserValidator,
                                           ),
                                           SizedBox(
                                             height: getHeight(context, 0.02),
@@ -222,11 +206,12 @@ class ActiveRequestItem extends StatelessWidget {
                                                   finishNurse: FinishedNurse(
                                                       rate: filingRate,
                                                       feelingDescription:
-                                                          commentController
-                                                              .text,
+                                                          "نظری داده نشد",
                                                       requestCode:
                                                           activeRequestList
                                                               .requestCode)));
+
+                                          Navigator.pop(context);
                                         },
                                       ));
                                 },
@@ -240,7 +225,7 @@ class ActiveRequestItem extends StatelessWidget {
                                   alertDialogWarning(
                                       context,
                                       "لغو درخواست",
-                                      "آیا از لفو درخواست حود مطمئت هستید ؟",
+                                      "آیا از لغو درخواست حود مطمئن هستید ؟",
                                       "لغو کن", () {
                                     context.read<ActiveBloc>().add(
                                         RejectRequestEvent(
@@ -323,8 +308,8 @@ class ActiveRequestItem extends StatelessWidget {
                           ),
                           ItemRequest(
                               title: "مبلغ پرداختی",
-                              value: NumberFormat('###,###,000')
-                                  .format(activeRequestList.finalPrice)),
+                              value:
+                                  "${NumberFormat('###,###,000').format(activeRequestList.finalPrice)} ریال"),
                           const Sperstor(
                             color: Colors.white,
                           ),
@@ -339,7 +324,18 @@ class ActiveRequestItem extends StatelessWidget {
                                 backgroundColor: Colors.white,
                                 foregroundColor: Colors.red,
                                 child: const Icon(Icons.cancel),
-                                onPressed: () {},
+                                onPressed: () {
+                                  alertDialogWarning(
+                                      context,
+                                      "لغو درخواست",
+                                      "آیا از لغو درخواست حود مطمئن هستید ؟",
+                                      "لغو کن", () {
+                                    context.read<ActiveBloc>().add(
+                                        RejectRequestEvent(
+                                            uniqCode:
+                                                activeRequestList.requestCode));
+                                  });
+                                },
                               ),
                             ],
                           )

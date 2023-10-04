@@ -3,6 +3,7 @@ import 'package:alotazrighat_application/pages/home_page/home_page.dart';
 import 'package:alotazrighat_application/pages/layout_page.dart';
 import 'package:alotazrighat_application/pages/login_page/login_page.dart';
 import 'package:alotazrighat_application/pages/register_page/register_page.dart';
+import 'package:alotazrighat_application/pages/send_page/send_page.dart';
 import 'package:alotazrighat_application/pages/welcom_page/welcom_page.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,13 @@ class AppRouter {
 
       case Layout.screenId:
         return MaterialPageRoute(builder: (_) => const Layout());
+
+      case SendPage.screenId:
+        dynamic args = settings.arguments as dynamic;
+        return MaterialPageRoute(
+            builder: (_) => SendPage(
+                  uniqCode: args[0],
+                ));
 
       default:
         return null;
