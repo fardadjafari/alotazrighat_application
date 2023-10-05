@@ -24,8 +24,7 @@ class Body extends StatelessWidget {
           );
         } else if (state.welcomEvent is CompletedWelcomEvent) {
           Future.delayed(const Duration(seconds: 7), () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const HelphPage()));
+            Navigator.pushNamed(context, HelphPage.screenId);
           });
         }
       },

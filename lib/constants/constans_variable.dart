@@ -15,6 +15,7 @@ class StaticVariable {
   static String discountApplaied =
       "Customer/Discount/IsDiscountAppliableOnRequest";
   static String addRequest = "Customer/NurseRequest/AddRequest";
+  static String payUrl = "https://alotazrighat.com/api/Finance/Pay/";
 
   static String detailService = "Customer/Service/Detail/";
   static String allCities = "Area/AllCities";

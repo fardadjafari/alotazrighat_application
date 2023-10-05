@@ -4,6 +4,7 @@ import 'package:alotazrighat_application/repository/models/area/all_cities.dart'
 import 'package:alotazrighat_application/repository/models/auth/location.dart';
 import 'package:alotazrighat_application/repository/models/request/add_request.dart';
 import 'package:alotazrighat_application/repository/models/request/discount_request.dart';
+import 'package:alotazrighat_application/repository/models/request/response_request.dart';
 import 'package:alotazrighat_application/repository/models/request/type_service.dart';
 import 'package:alotazrighat_application/repository/request_repository.dart';
 import 'package:alotazrighat_application/tools/network/http_status.dart';
@@ -22,6 +23,7 @@ class SendBloc extends Bloc<SendEvent, SendState> {
     on<InitialDicountPage>(_loadDiscount);
     on<AppliedDiscount>(_applatDiscount);
     on<AddRequestEvent>(_addRequest);
+    on<CheckPermisionEvent>(_ckeckPermision);
   }
   final RequestRepository requestRepository;
 
@@ -57,38 +59,16 @@ class SendBloc extends Bloc<SendEvent, SendState> {
   FutureOr<void> _applatDiscount(
       AppliedDiscount event, Emitter<SendState> emit) async {
     emit(state.copyWith(LoadningPage()));
+    if (event.code.isNotEmpty) {
+      var response = await requestRepository
+          .checkDiscount(DiscountCheckModel(code: event.code));
 
-    var response = await requestRepository
-        .checkDiscount(DiscountCheckModel(code: event.code));
-
-    if (response.statusHttps == StatusHttps.ok) {
-      bool servicestatus = await Geolocator.isLocationServiceEnabled();
-
-      if (!servicestatus) {
-        emit(state.copyWith(TurnOnGPSEvent()));
+      if (response.statusHttps == StatusHttps.ok) {
+        emit(state.copyWith(CheckPermisionEvent()));
       }
-
-      LocationPermission permission = await Geolocator.checkPermission();
-
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied ||
-          permission == LocationPermission.deniedForever ||
-          permission == LocationPermission.denied) {
-        emit(state.copyWith(FaildPermisionEvent()));
-      }
-
-      if (permission == LocationPermission.always ||
-          permission == LocationPermission.whileInUse) {
-        // emit(state.copyWith(InitialFormPageEvent()));
-      }
-
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-
-      emit(state.copyWith(InitialMapPageEvent(
-          lang: position.longitude, laut: position.latitude)));
-    } else {
       emit(state.copyWith(RejectDiscount()));
+    } else {
+      emit(state.copyWith(CheckPermisionEvent()));
     }
   }
 
@@ -106,6 +86,41 @@ class SendBloc extends Bloc<SendEvent, SendState> {
       sex: event.sex,
     ));
 
-    if (result.statusHttps == StatusHttps.ok) {}
+    if (result.statusHttps == StatusHttps.ok) {
+      var resultFinal = result.data as ResponseRequest;
+      emit(state
+          .copyWith(RedirectToPayEvent(requestCode: resultFinal.requestCode)));
+    } else {
+      emit(state.copyWith(FailedRequestEvent()));
+    }
+  }
+
+  FutureOr<void> _ckeckPermision(
+      CheckPermisionEvent event, Emitter<SendState> emit) async {
+    bool servicestatus = await Geolocator.isLocationServiceEnabled();
+
+    if (!servicestatus) {
+      emit(state.copyWith(TurnOnGPSEvent()));
+    }
+
+    LocationPermission permission = await Geolocator.checkPermission();
+
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever ||
+        permission == LocationPermission.denied) {
+      emit(state.copyWith(FaildPermisionEvent()));
+    }
+
+    if (permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse) {
+      // emit(state.copyWith(InitialFormPageEvent()));
+    }
+
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+
+    emit(state.copyWith(InitialMapPageEvent(
+        lang: position.longitude, laut: position.latitude)));
   }
 }

@@ -1,8 +1,12 @@
+import 'package:alotazrighat_application/constants/constans_variable.dart';
+import 'package:alotazrighat_application/pages/home_page/home_page.dart';
+import 'package:alotazrighat_application/pages/layout_page.dart';
 import 'package:alotazrighat_application/pages/send_page/logic/bloc/send_bloc.dart';
 import 'package:alotazrighat_application/pages/send_page/widget/detail_item.dart';
 import 'package:alotazrighat_application/pages/send_page/widget/location_picker.dart';
 import 'package:alotazrighat_application/pages/send_page/widget/section_discount.dart';
 import 'package:alotazrighat_application/repository/models/request/detail_service.dart';
+import 'package:alotazrighat_application/repository/models/request/response_request.dart';
 import 'package:alotazrighat_application/repository/models/request/type_service.dart';
 import 'package:alotazrighat_application/tools/validator/user_validator.dart';
 import 'package:alotazrighat_application/widget/button/squre_button.dart';
@@ -19,6 +23,7 @@ import 'package:alotazrighat_application/widget/popup/snack_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key, required this.uniqCode});
@@ -61,6 +66,19 @@ class _BodyState extends State<Body> {
       padding: EdgeInsets.symmetric(vertical: getWidth(context, 0.16)),
       child: BlocConsumer<SendBloc, SendState>(
         listener: (context, state) {
+          if (state.sendEvent is FailedRequestEvent) {
+            getSnackBarWidget(
+                context, "ثبت درخواست شما با مشکلی مواجه شد", Colors.red);
+            Navigator.pushNamed(context, Layout.screenId);
+          }
+          if (state.sendEvent is RedirectToPayEvent) {
+            var modelCall = state.sendEvent as RedirectToPayEvent;
+            launchUrl(Uri.parse(StaticVariable.payUrl + modelCall.requestCode));
+            Navigator.pushNamed(context, Layout.screenId);
+          }
+          if (state.sendEvent is CheckPermisionEvent) {
+            context.read<SendBloc>().add(CheckPermisionEvent());
+          }
           if (state.sendEvent is RejectDiscount) {
             getSnackBarWidget(
                 context, "کد تخفیف وارد شده صحیح نمی باشد", Colors.red);

@@ -11,6 +11,7 @@ import 'package:alotazrighat_application/repository/models/request/discount_requ
 import 'package:alotazrighat_application/repository/models/request/enums/request_status.dart';
 import 'package:alotazrighat_application/repository/models/request/finished_request.dart';
 import 'package:alotazrighat_application/repository/models/request/reject_request.dart';
+import 'package:alotazrighat_application/repository/models/request/response_request.dart';
 import 'package:alotazrighat_application/repository/models/request/type_service.dart';
 import 'package:alotazrighat_application/repository/models/service/service_item.dart';
 import 'package:alotazrighat_application/repository/models/setting/profile_table.dart';
@@ -212,7 +213,9 @@ class RequestService {
         options: Options(headers: {"Authorization": "Bearer $token"}),
         data: jsonModel);
 
-    return OperationResult(null,
+    var result = ResponseRequest.fromJson(response.data);
+
+    return OperationResult(result,
         statusHttps: OperationResult.translateStatusHttps(response.statusCode),
         message: response.statusMessage);
   }

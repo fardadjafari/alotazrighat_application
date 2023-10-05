@@ -6,6 +6,7 @@ import 'package:alotazrighat_application/widget/lable/text_lable.dart';
 import 'package:alotazrighat_application/widget/loading/loading_widget.dart';
 import 'package:alotazrighat_application/widget/media_query.dart';
 import 'package:alotazrighat_application/widget/popup/awesome_alert.dart';
+import 'package:alotazrighat_application/widget/popup/snack_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,16 +39,14 @@ class _BodyState extends State<Body> {
             alertDialogWarning(
                 context,
                 "لغو درخواست",
-                "درخواست شما لفو شد منتظر تماس کارشناسان جهت اودت هزینه باشید",
+                "درخواست شما لغو شد منتظر تماس کارشناسان جهت اودت هزینه باشید",
                 "لغو کن", () {
               context.read<ActiveBloc>().add(InitialActivePageEvent());
             });
           }
 
           if (state.activeEvent is FaildRejectEvent) {
-            alertDialogError(
-                context, "لغو درخواست", "آیا از لفو درخواست حود مطمئت هستید ؟");
-
+            getSnackBarWidget(context, "درخواست شما لغو شد", Colors.red);
             context.read<ActiveBloc>().add(InitialActivePageEvent());
           }
 

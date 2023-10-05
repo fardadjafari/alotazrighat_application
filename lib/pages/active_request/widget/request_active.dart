@@ -237,11 +237,9 @@ class ActiveRequestItem extends StatelessWidget {
                                 foregroundColor: Colors.red,
                                 child: const Icon(Icons.cancel),
                                 onPressed: () {
-                                  alertDialogWarning(
-                                      context,
-                                      "لغو درخواست",
+                                  alertDialogError(context, "لغو درخواست",
                                       "آیا از لغو درخواست حود مطمئن هستید ؟",
-                                      "لغو کن", () {
+                                      () {
                                     context.read<ActiveBloc>().add(
                                         RejectRequestEvent(
                                             uniqCode:

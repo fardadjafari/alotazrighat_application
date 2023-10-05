@@ -43,6 +43,8 @@ class AppliedDiscount extends SendEvent {
 
 class RejectDiscount extends SendEvent {}
 
+class CheckPermisionEvent extends SendEvent {}
+
 class InitialMapPageEvent extends SendEvent {
   final double lang;
   final double laut;
@@ -81,3 +83,11 @@ class AddRequestEvent extends SendEvent {
       required this.serviceTypeId,
       required this.quantity});
 }
+
+class RedirectToPayEvent extends SendEvent {
+  final String requestCode;
+
+  RedirectToPayEvent({required this.requestCode});
+}
+
+class FailedRequestEvent extends SendEvent {}

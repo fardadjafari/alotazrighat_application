@@ -20,11 +20,8 @@ alertDialogWarning(BuildContext context, String title, String desc,
   ).show();
 }
 
-alertDialogError(
-  BuildContext context,
-  String title,
-  String desc,
-) {
+alertDialogError(BuildContext context, String title, String desc,
+    void Function()? okFuncation) {
   return AwesomeDialog(
     dialogBackgroundColor: backGroundColor,
     context: context,
@@ -41,9 +38,11 @@ alertDialogError(
         fontFamily: "Iran Sans",
         fontWeight: FontWeight.bold),
     desc: desc,
-    btnOkOnPress: () {},
+    btnOkOnPress: okFuncation,
     btnOkColor: primaryColor,
-    btnOkText: 'برگشت',
+    btnOkText: 'تایید',
+    btnCancelText: "برگشت",
+    btnCancelOnPress: () {},
     // buttonsTextStyle: getBodyBoldWhiteStyle(context),
   ).show();
 }
