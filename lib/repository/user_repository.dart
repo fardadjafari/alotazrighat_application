@@ -18,4 +18,7 @@ class UserRepository {
 
   Future<OperationResult> registerUser(RegisterUser registerModel) =>
       userService.registerUser(registerModel);
+
+  Future<OperationResult> checkStatusUser(String token) =>
+      userService.validateToken(token);
 }

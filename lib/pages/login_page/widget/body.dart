@@ -26,7 +26,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   int _remainingTime = 180;
-  late Timer _timer;
+  Timer? _timer;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<FormState> _formKeyPassword = GlobalKey<FormState>();
   final TextEditingController phoneNumberController = TextEditingController();
@@ -37,7 +37,7 @@ class _BodyState extends State<Body> {
   void dispose() {
     phoneNumberController.dispose();
     passwordController.dispose();
-    _timer.cancel();
+    _timer!.cancel();
 
     super.dispose();
   }
@@ -180,7 +180,7 @@ class _BodyState extends State<Body> {
                       text: "تایید رمز یبار مصرف",
                       press: () {
                         if (_formKeyPassword.currentState!.validate()) {
-                          _timer.cancel();
+                          _timer!.cancel();
                           context.read<LoginBloc>().add(FillPasswordEvent(
                               phonenumber: phoneNumberController.text,
                               password: passwordController.text));
@@ -249,10 +249,11 @@ class _BodyState extends State<Body> {
         if (_remainingTime > 0) {
           _remainingTime--;
         } else {
-          _timer.cancel();
+          _timer!.cancel();
           _restartTimer();
           restPassWidget();
-          context.read<LoginBloc>().emit(state.copyWith(InitialPageEvent()));
+          context.read<LoginBloc>().add(InitialPageEvent());
+          //context.read<LoginBloc>().emit(state.copyWith(InitialPageEvent()));
         }
       });
     });

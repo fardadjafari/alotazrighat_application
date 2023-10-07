@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'widget/body.dart';
@@ -8,6 +10,6 @@ class HelphPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Body();
+    return WillPopScope(onWillPop: () => exit(0), child: const Body());
   }
 }

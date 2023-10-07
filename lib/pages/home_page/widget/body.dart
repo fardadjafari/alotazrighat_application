@@ -30,7 +30,6 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        print(state.homeEvent);
         if (state.homeEvent is LoadServicePageEvent) {
           var listService = state.homeEvent as LoadServicePageEvent;
           return ListView.separated(

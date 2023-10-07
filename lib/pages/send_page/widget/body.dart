@@ -1,12 +1,10 @@
 import 'package:alotazrighat_application/constants/constans_variable.dart';
-import 'package:alotazrighat_application/pages/home_page/home_page.dart';
 import 'package:alotazrighat_application/pages/layout_page.dart';
 import 'package:alotazrighat_application/pages/send_page/logic/bloc/send_bloc.dart';
 import 'package:alotazrighat_application/pages/send_page/widget/detail_item.dart';
 import 'package:alotazrighat_application/pages/send_page/widget/location_picker.dart';
 import 'package:alotazrighat_application/pages/send_page/widget/section_discount.dart';
 import 'package:alotazrighat_application/repository/models/request/detail_service.dart';
-import 'package:alotazrighat_application/repository/models/request/response_request.dart';
 import 'package:alotazrighat_application/repository/models/request/type_service.dart';
 import 'package:alotazrighat_application/tools/validator/user_validator.dart';
 import 'package:alotazrighat_application/widget/button/squre_button.dart';

@@ -109,4 +109,12 @@ class UserService {
         statusHttps: OperationResult.translateStatusHttps(response.statusCode),
         message: response.data);
   }
+
+  Future<OperationResult> validateToken(String token) async {
+    var response = await httpClient.get(getUrl(url: StaticVariable.service),
+        options: Options(headers: {"Authorization": "Bearer $token"}));
+
+    return OperationResult(null,
+        statusHttps: OperationResult.translateStatusHttps(response.statusCode));
+  }
 }
