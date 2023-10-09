@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:alotazrighat_application/constants/constans_variable.dart';
 import 'package:alotazrighat_application/repository/database/hive_table.dart';
@@ -8,7 +9,6 @@ import 'package:alotazrighat_application/repository/models/auth/register_user.da
 import 'package:alotazrighat_application/repository/models/auth/send_code.dart';
 import 'package:alotazrighat_application/repository/models/setting/profile_table.dart';
 import 'package:alotazrighat_application/tools/network/http_status.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
@@ -42,14 +42,13 @@ class UserService {
 
   Future<bool> getStateNetwork() async {
     try {
-      final Connectivity connectivity = Connectivity();
-      var result = await connectivity.checkConnectivity();
-      if (result == ConnectivityResult.mobile ||
-          result == ConnectivityResult.wifi) {
+      var response = await InternetAddress.lookup('example.com');
+
+      if (response.isNotEmpty && response[0].rawAddress.isNotEmpty) {
         return true;
       }
       return false;
-    } on PlatformException catch (_) {
+    } on SocketException catch (_) {
       return false;
     }
   }

@@ -14,7 +14,6 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<WelcomBloc, WelcomState>(
       listener: (context, state) {
-        print(state.welcomEvent);
         if (state.welcomEvent is FeaildConectionWelcomEvent) {
           alertDialogWarning(
             context,

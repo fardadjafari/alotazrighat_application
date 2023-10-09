@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class Sperstor extends StatelessWidget {
   final Color color;
 
-  const Sperstor({required this.color});
+  const Sperstor({super.key, required this.color});
 
   @override
   Widget build(BuildContext context) {

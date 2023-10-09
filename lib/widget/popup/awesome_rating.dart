@@ -7,6 +7,14 @@ alertDialogRate(
   return AwesomeDialog(
     dialogBackgroundColor: backGroundColor,
     context: context,
+    titleTextStyle: const TextStyle(
+        decoration: TextDecoration.none,
+        fontFamily: "Iran Sans",
+        fontWeight: FontWeight.bold),
+    descTextStyle: const TextStyle(
+        decoration: TextDecoration.none,
+        fontFamily: "Iran Sans",
+        fontWeight: FontWeight.w600),
     dialogType: DialogType.success,
     animType: AnimType.scale,
     headerAnimationLoop: false,

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:alotazrighat_application/widget/color_utility.dart';
 import 'package:flutter/material.dart';
 

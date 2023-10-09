@@ -71,7 +71,8 @@ class _BodyState extends State<Body> {
           }
           if (state.sendEvent is RedirectToPayEvent) {
             var modelCall = state.sendEvent as RedirectToPayEvent;
-            launchUrl(Uri.parse(StaticVariable.payUrl + modelCall.requestCode));
+            launchUrl(Uri.parse(
+                "${StaticVariable.payUrl}${modelCall.requestCode}?source=Mobile"));
             Navigator.pushNamed(context, Layout.screenId);
           }
           if (state.sendEvent is CheckPermisionEvent) {
@@ -340,7 +341,9 @@ class _BodyState extends State<Body> {
                             hintText: "کد تخفیف خود را وارد کنید",
                             onSaved: (p0) {},
                             controller: discountController,
-                            validation: (p0) {},
+                            validation: (p0) {
+                              return null;
+                            },
                           )
                         ],
                       ),

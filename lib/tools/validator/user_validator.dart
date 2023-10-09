@@ -53,11 +53,11 @@ class Uservalidator {
   static final addressUserValidator =
       ValidationBuilder(requiredMessage: "محدوده آدرسی وارد شده معتبر نمی باشد")
           .minLength(3, " محدوده آدرسی وارد شده معتبر نمی باشد")
-          .maxLength(64, "محدوده آدرسی وارد شده معتبر نمی باشد")
+          .maxLength(200, "محدوده آدرسی وارد شده معتبر نمی باشد")
           .build();
 
   static final commentUserValidator =
       ValidationBuilder(requiredMessage: " نظر وارد شده معتبر نمی باشد")
-          .maxLength(64, "محدوده نظر وارد شده معتبر نمی باشد")
+          .maxLength(120, "محدوده نظر وارد شده معتبر نمی باشد")
           .build();
 }
