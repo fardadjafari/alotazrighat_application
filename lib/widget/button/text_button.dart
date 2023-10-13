@@ -23,6 +23,7 @@ class ButtonText extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
+            fontFamily: "Iran Sans",
             decoration: TextDecoration.none,
             fontSize: fontSizeText,
             color: colorText,

@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:alotazrighat_application/constants/constans_variable.dart';
 import 'package:alotazrighat_application/pages/layout_page.dart';
+import 'package:alotazrighat_application/pages/register_page/register_page.dart';
 import 'package:alotazrighat_application/widget/button/squre_button.dart';
+import 'package:alotazrighat_application/widget/button/text_button.dart';
 import 'package:alotazrighat_application/widget/color_utility.dart';
 import 'package:alotazrighat_application/widget/input/password_input.dart';
 import 'package:alotazrighat_application/widget/input/phonenumber_input.dart';
@@ -77,7 +79,8 @@ class _BodyState extends State<Body> {
               color: bgColor,
             ),
           );
-        } else if (state.loginUserEvent is InitialPageEvent) {
+        } else if (state.loginUserEvent is InitialPageEvent ||
+            state.loginUserEvent is ErrorPhoneNumberEvent) {
           return Form(
             key: _formKey,
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -120,17 +123,16 @@ class _BodyState extends State<Body> {
                       color: buttonColor,
                       textColor: buttonTextColor),
                   SizedBox(
-                    height: getHeight(context, 0.01),
+                    height: getHeight(context, 0.03),
                   ),
-                  Visibility(
-                    visible: state.loginUserEvent is ErrorPhoneNumberEvent
-                        ? true
-                        : false,
-                    child: SquereButton(
-                        text: "ثبت نام",
-                        press: () {},
-                        color: buttonColor,
-                        textColor: buttonTextColor),
+                  ButtonText(
+                    text: "در صورت نداشتن حساب کاربری کلیک کنید",
+                    bodyFunction: () {
+                      Navigator.pushNamed(context, RegisterPage.screenId);
+                    },
+                    colorText: buttonColor,
+                    fontSizeText: getWidth(context, 0.035),
+                    fontWeightText: FontWeight.w800,
                   ),
                 ],
               ),
