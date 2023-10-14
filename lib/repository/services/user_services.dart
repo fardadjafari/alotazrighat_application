@@ -25,7 +25,7 @@ class UserService {
                 if (statusCode == null) {
                   return false;
                 }
-                if (statusCode == 400) {
+                if (statusCode == 400 || statusCode == 401) {
                   return true;
                 } else {
                   return statusCode >= 200 && statusCode < 300;
