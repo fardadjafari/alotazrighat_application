@@ -34,13 +34,13 @@ class PasswordInput extends StatelessWidget {
         textAlign: TextAlign.center,
         maxLength: 5,
         style: TextStyle(
-          fontFamily: "Iran Sans",
+          fontFamily: "iran",
           letterSpacing: getWidth(context, 0.06),
         ),
         decoration: InputDecoration(
           //errorText: error,
-          errorStyle: TextStyle(
-              fontFamily: "Iran Sans", fontSize: getWidth(context, 0.035)),
+          errorStyle:
+              TextStyle(fontFamily: "iran", fontSize: getWidth(context, 0.035)),
           counterText: "",
           labelText: hintText,
           labelStyle:
@@ -56,7 +56,7 @@ class PasswordInput extends StatelessWidget {
           prefixIcon: Icon(Icons.lock, size: getWidth(context, 0.06)),
           prefixIconColor: Colors.black45,
           hintStyle: TextStyle(
-              fontFamily: "Iran Sans",
+              fontFamily: "iran",
               fontWeight: FontWeight.w500,
               fontSize: getWidth(context, 0.05)),
         ),

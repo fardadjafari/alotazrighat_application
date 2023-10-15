@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none' 
 
-version: 1.0.1+2
+version: 1.0.1+3
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
@@ -60,7 +60,7 @@ flutter:
   
 
   fonts:
-    - family: Iran Sans
+    - family: iran
       fonts:
         - asset: assets/fonts/IRANSansXFaNum-Bold.ttf
         - asset: assets/fonts/IRANSansXFaNum-Regular.ttf

@@ -9,11 +9,11 @@ alertDialogRate(
     context: context,
     titleTextStyle: const TextStyle(
         decoration: TextDecoration.none,
-        fontFamily: "Iran Sans",
+        fontFamily: "iran",
         fontWeight: FontWeight.bold),
     descTextStyle: const TextStyle(
         decoration: TextDecoration.none,
-        fontFamily: "Iran Sans",
+        fontFamily: "iran",
         fontWeight: FontWeight.w600),
     dialogType: DialogType.success,
     animType: AnimType.scale,

@@ -39,11 +39,11 @@ class MultiLineTextInput extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: getWidth(context, 0.035),
-              fontFamily: "Iran Sans",
+              fontFamily: "iran",
               letterSpacing: getWidth(context, 0.001)),
           decoration: InputDecoration(
             errorStyle: TextStyle(
-                fontFamily: "Iran Sans", fontSize: getWidth(context, 0.04)),
+                fontFamily: "iran", fontSize: getWidth(context, 0.04)),
             counterText: "",
             labelText: hintText,
             labelStyle: TextStyle(fontSize: getWidth(context, 0.04)),
@@ -55,7 +55,7 @@ class MultiLineTextInput extends StatelessWidget {
             prefixIcon: Icon(icon, size: getWidth(context, 0.06)),
             prefixIconColor: Colors.black45,
             hintStyle: TextStyle(
-                fontFamily: "Iran Sans",
+                fontFamily: "iran",
                 fontWeight: FontWeight.w500,
                 fontSize: getWidth(context, 0.05)),
           ),

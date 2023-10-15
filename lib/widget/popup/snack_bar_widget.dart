@@ -13,7 +13,7 @@ getSnackBarWidget(BuildContext context, String text, Color color) {
         text,
         style: TextStyle(
             decoration: TextDecoration.none,
-            fontFamily: "Iran Sans",
+            fontFamily: "iran",
             fontSize: getWidth(context, 0.04),
             fontWeight: FontWeight.bold),
       ),

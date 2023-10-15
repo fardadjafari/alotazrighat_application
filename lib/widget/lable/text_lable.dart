@@ -22,7 +22,7 @@ class TextLable extends StatelessWidget {
       text,
       style: TextStyle(
           decoration: TextDecoration.none,
-          fontFamily: "Iran Sans",
+          fontFamily: "iran",
           fontSize: fontSizeText,
           color: colorText,
           fontWeight: fontWeightText),

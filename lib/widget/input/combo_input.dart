@@ -38,7 +38,7 @@ class _ComboBoxFormFieldState<TKey> extends State<ComboBoxFormField<TKey>> {
           },
           decoration: InputDecoration(
               errorStyle: TextStyle(
-                  fontFamily: "Iran Sans", fontSize: getWidth(context, 0.035))),
+                  fontFamily: "iran", fontSize: getWidth(context, 0.035))),
           value: value,
           alignment: AlignmentDirectional.center,
           elevation: 20,

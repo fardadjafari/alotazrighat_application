@@ -33,11 +33,11 @@ class TellphoneInput extends StatelessWidget {
         maxLengthEnforcement: MaxLengthEnforcement.none,
         textAlign: TextAlign.center,
         style: TextStyle(
-            fontFamily: "Iran Sans", letterSpacing: getWidth(context, 0.02)),
+            fontFamily: "iran", letterSpacing: getWidth(context, 0.02)),
         decoration: InputDecoration(
           //errorText: "شماره وارد شده صحیح نیست",
-          errorStyle: TextStyle(
-              fontFamily: "Iran Sans", fontSize: getWidth(context, 0.04)),
+          errorStyle:
+              TextStyle(fontFamily: "iran", fontSize: getWidth(context, 0.04)),
           counterText: "",
           labelText: hintText,
           labelStyle: TextStyle(fontSize: getWidth(context, 0.04)),
@@ -49,7 +49,7 @@ class TellphoneInput extends StatelessWidget {
           prefixIcon: Icon(Icons.phone, size: getWidth(context, 0.06)),
           prefixIconColor: Colors.black45,
           hintStyle: TextStyle(
-              fontFamily: "Iran Sans",
+              fontFamily: "iran",
               fontWeight: FontWeight.w500,
               fontSize: getWidth(context, 0.05)),
         ),

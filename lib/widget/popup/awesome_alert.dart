@@ -31,11 +31,11 @@ alertDialogError(BuildContext context, String title, String desc,
     title: title,
     titleTextStyle: const TextStyle(
         decoration: TextDecoration.none,
-        fontFamily: "Iran Sans",
+        fontFamily: "iran",
         fontWeight: FontWeight.bold),
     descTextStyle: const TextStyle(
         decoration: TextDecoration.none,
-        fontFamily: "Iran Sans",
+        fontFamily: "iran",
         fontWeight: FontWeight.bold),
     desc: desc,
     btnOkOnPress: okFuncation,
