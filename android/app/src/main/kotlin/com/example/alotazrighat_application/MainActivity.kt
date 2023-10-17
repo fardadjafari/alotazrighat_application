@@ -1,4 +1,4 @@
-package com.example.alotazrighat_application
+package com.alotazrighat.nursing
 
 import io.flutter.embedding.android.FlutterActivity
 
