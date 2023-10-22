@@ -1,6 +1,7 @@
 class StaticVariable {
   static String baseUrl = "https://alotazrighat.com/api/";
   static String baseImageUrl = "https://alotazrighat.com/services/";
+  static String termsOfUse = "https://alotazrighat.com/termsOfUse";
   static String userAvatar = "https://alotazrighat.com/UserAvatar/";
   static String nurseCard = "https://alotazrighat.com/NurseLicenceCardPhoto/";
   static String smsSendCode = "Auth/SendCode";

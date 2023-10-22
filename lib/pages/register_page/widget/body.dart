@@ -7,6 +7,7 @@ import 'package:alotazrighat_application/pages/register_page/logic/bloc/register
 import 'package:alotazrighat_application/pages/register_page/widget/location_picker.dart';
 import 'package:alotazrighat_application/tools/validator/user_validator.dart';
 import 'package:alotazrighat_application/widget/button/squre_button.dart';
+import 'package:alotazrighat_application/widget/button/text_button.dart';
 import 'package:alotazrighat_application/widget/color_utility.dart';
 import 'package:alotazrighat_application/widget/input/multiline_input.dart';
 import 'package:alotazrighat_application/widget/input/password_input.dart';
@@ -22,6 +23,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -167,7 +169,19 @@ class _BodyState extends State<Body> {
                       minLine: 1,
                     ),
                     SizedBox(
-                      height: getHeight(context, 0.02),
+                      height: getHeight(context, 0.025),
+                    ),
+                    ButtonText(
+                      colorText: Colors.blueAccent,
+                      fontSizeText: getWidth(context, 0.036),
+                      fontWeightText: FontWeight.w300,
+                      text: "شرایط استفاده از خدمات و حریم خصوصی را می پذیرم",
+                      bodyFunction: () {
+                        launchUrl(Uri.parse(StaticVariable.termsOfUse));
+                      },
+                    ),
+                    SizedBox(
+                      height: getHeight(context, 0.03),
                     ),
                     SquereButton(
                         text: "ثبت نام",

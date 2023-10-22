@@ -16,6 +16,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../logic/bloc/login_bloc.dart';
 
@@ -108,6 +109,18 @@ class _BodyState extends State<Body> {
                     controller: phoneNumberController,
                     error: "خطا",
                     onSaved: (p0) {},
+                  ),
+                  SizedBox(
+                    height: getHeight(context, 0.025),
+                  ),
+                  ButtonText(
+                    colorText: Colors.blueAccent,
+                    fontSizeText: getWidth(context, 0.036),
+                    fontWeightText: FontWeight.w300,
+                    text: "شرایط استفاده از خدمات و حریم خصوصی را می پذیرم",
+                    bodyFunction: () {
+                      launchUrl(Uri.parse(StaticVariable.termsOfUse));
+                    },
                   ),
                   SizedBox(
                     height: getHeight(context, 0.03),
