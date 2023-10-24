@@ -71,8 +71,10 @@ class _BodyState extends State<Body> {
           }
           if (state.sendEvent is RedirectToPayEvent) {
             var modelCall = state.sendEvent as RedirectToPayEvent;
-            launchUrl(Uri.parse(
-                "${StaticVariable.payUrl}${modelCall.requestCode}?source=Mobile"));
+            launchUrl(
+                Uri.parse(
+                    "${StaticVariable.payUrl}${modelCall.requestCode}?source=Mobile"),
+                mode: LaunchMode.externalApplication);
             Navigator.pushNamed(context, Layout.screenId);
           }
           if (state.sendEvent is CheckPermisionEvent) {

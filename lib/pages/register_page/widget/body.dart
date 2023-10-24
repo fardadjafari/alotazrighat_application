@@ -173,8 +173,8 @@ class _BodyState extends State<Body> {
                     ),
                     ButtonText(
                       colorText: Colors.blueAccent,
-                      fontSizeText: getWidth(context, 0.036),
-                      fontWeightText: FontWeight.w300,
+                      fontSizeText: getWidth(context, 0.025),
+                      fontWeightText: FontWeight.bold,
                       text: "شرایط استفاده از خدمات و حریم خصوصی را می پذیرم",
                       bodyFunction: () {
                         launchUrl(Uri.parse(StaticVariable.termsOfUse));
