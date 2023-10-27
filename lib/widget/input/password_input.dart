@@ -35,6 +35,7 @@ class PasswordInput extends StatelessWidget {
         maxLength: 5,
         style: TextStyle(
           fontFamily: "iran",
+          fontSize: getWidth(context, 0.034),
           letterSpacing: getWidth(context, 0.06),
         ),
         decoration: InputDecoration(

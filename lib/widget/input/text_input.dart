@@ -28,6 +28,7 @@ class TextInput extends StatelessWidget {
       alignment: Alignment.center,
       width: getWidth(context, 0.9),
       child: TextFormField(
+        strutStyle: const StrutStyle(fontFamily: "Iran"),
         maxLength: 11,
         controller: controller,
         focusNode: focusNode,

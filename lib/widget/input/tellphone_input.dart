@@ -33,7 +33,9 @@ class TellphoneInput extends StatelessWidget {
         maxLengthEnforcement: MaxLengthEnforcement.none,
         textAlign: TextAlign.center,
         style: TextStyle(
-            fontFamily: "iran", letterSpacing: getWidth(context, 0.02)),
+            fontFamily: "iran",
+            fontSize: getWidth(context, 0.034),
+            letterSpacing: getWidth(context, 0.02)),
         decoration: InputDecoration(
           //errorText: "شماره وارد شده صحیح نیست",
           errorStyle:

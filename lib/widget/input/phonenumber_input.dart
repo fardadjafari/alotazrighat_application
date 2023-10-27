@@ -34,9 +34,10 @@ class PhoneNumberInput extends StatelessWidget {
         maxLengthEnforcement: MaxLengthEnforcement.none,
         textAlign: TextAlign.center,
         style: TextStyle(
-            fontFamily: "iran", letterSpacing: getWidth(context, 0.02)),
+            fontSize: getWidth(context, 0.034),
+            fontFamily: "iran",
+            letterSpacing: getWidth(context, 0.02)),
         decoration: InputDecoration(
-          //errorText: "شماره وارد شده صحیح نیست",
           errorStyle:
               TextStyle(fontFamily: "iran", fontSize: getWidth(context, 0.035)),
           counterText: "",
