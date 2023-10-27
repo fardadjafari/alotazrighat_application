@@ -1,9 +1,9 @@
 name: alotazrighat_application
-description: A new Flutter project.
+description: A program for home nursing services
 
 publish_to: 'none' 
 
-version: 1.0.1+5
+version: 1.0.1+6
 
 environment:
   sdk: '>=3.1.0 <4.0.0'

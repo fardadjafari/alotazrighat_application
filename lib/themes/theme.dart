@@ -25,7 +25,7 @@ class CustomTheme {
         textStyle: TextStyle(
           color: whiteColor,
           fontWeight: FontWeight.bold,
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           fontSize: ScreenUtil().setWidth(12),
         ),
       ),
@@ -37,7 +37,7 @@ class CustomTheme {
         textStyle: TextStyle(
           color: whiteColor,
           fontWeight: FontWeight.bold,
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           fontSize: ScreenUtil().setWidth(13),
         ),
       ),
@@ -51,7 +51,7 @@ class CustomTheme {
       centerTitle: false,
       titleTextStyle: TextStyle(
           color: darkColor,
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           fontWeight: FontWeight.bold,
           fontSize: ScreenUtil().setWidth(12)),
     ),
@@ -88,11 +88,11 @@ class CustomTheme {
       iconColor: darkColor,
       suffixIconColor: darkColor,
       labelStyle: TextStyle(
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           color: darkColor.withOpacity(0.8),
           fontSize: ScreenUtil().setWidth(12)),
       hintStyle: TextStyle(
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           color: darkColor.withOpacity(0.6),
           fontSize: ScreenUtil().setWidth(12)),
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -101,7 +101,7 @@ class CustomTheme {
     snackBarTheme: SnackBarThemeData(
       contentTextStyle: TextStyle(
           color: whiteColor,
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           fontWeight: FontWeight.bold,
           fontSize: ScreenUtil().setWidth(10)),
     ),
@@ -110,47 +110,47 @@ class CustomTheme {
     //
     textTheme: TextTheme(
       bodySmall: TextStyle(
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           color: darkColor,
           fontSize: ScreenUtil().setWidth(10)),
       bodyMedium: TextStyle(
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           color: darkColor,
           fontSize: ScreenUtil().setWidth(12)),
       bodyLarge: TextStyle(
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           color: darkColor,
           fontSize: ScreenUtil().setWidth(14)),
       //
       titleSmall: TextStyle(
           color: whiteColor,
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           fontWeight: FontWeight.bold,
           fontSize: ScreenUtil().setWidth(12)),
       titleMedium: TextStyle(
           color: darkColor,
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           fontWeight: FontWeight.bold,
           fontSize: ScreenUtil().setWidth(16)),
       titleLarge: TextStyle(
           color: whiteColor,
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           fontWeight: FontWeight.bold,
           fontSize: ScreenUtil().setWidth(16)),
       //
       labelSmall: TextStyle(
           color: darkColor,
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           fontWeight: FontWeight.bold,
           fontSize: ScreenUtil().setWidth(12)),
       labelMedium: TextStyle(
           color: primaryColor,
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           fontWeight: FontWeight.bold,
           fontSize: ScreenUtil().setWidth(14)),
       labelLarge: TextStyle(
           color: Colors.grey[500],
-          fontFamily: 'vazir',
+          fontFamily: 'iran',
           fontSize: ScreenUtil().setWidth(12)),
       //
       //
